@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C9BCE0027C2C96D0027A437 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9BCDFF27C2C96D0027A437 /* Home.swift */; };
+		0C9BCE0327C2E6C40027A437 /* SpeechGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9BCE0227C2E6C40027A437 /* SpeechGrid.swift */; };
 		C5A8EDB427BC9B79006CA34D /* FreespeechVTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8EDB327BC9B79006CA34D /* FreespeechVTApp.swift */; };
 		C5A8EDB627BC9B79006CA34D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8EDB527BC9B79006CA34D /* ContentView.swift */; };
 		C5A8EDB827BC9B7B006CA34D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A8EDB727BC9B7B006CA34D /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C9BCDFF27C2C96D0027A437 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		0C9BCE0227C2E6C40027A437 /* SpeechGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechGrid.swift; sourceTree = "<group>"; };
 		C5A8EDB027BC9B79006CA34D /* FreespeechVT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreespeechVT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A8EDB327BC9B79006CA34D /* FreespeechVTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreespeechVTApp.swift; sourceTree = "<group>"; };
 		C5A8EDB527BC9B79006CA34D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,6 +40,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C9BCDFD27C2C2900027A437 /* Tab Bar Views */ = {
+			isa = PBXGroup;
+			children = (
+				0C9BCDFE27C2C9600027A437 /* Home */,
+				0C9BCE0127C2E61E0027A437 /* Speech */,
+			);
+			path = "Tab Bar Views";
+			sourceTree = "<group>";
+		};
+		0C9BCDFE27C2C9600027A437 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0C9BCDFF27C2C96D0027A437 /* Home.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0C9BCE0127C2E61E0027A437 /* Speech */ = {
+			isa = PBXGroup;
+			children = (
+				0C9BCE0227C2E6C40027A437 /* SpeechGrid.swift */,
+			);
+			path = Speech;
+			sourceTree = "<group>";
+		};
 		C5A8EDA727BC9B79006CA34D = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +89,7 @@
 				C5A8EDB727BC9B7B006CA34D /* Assets.xcassets */,
 				C5A8EDBC27BC9B7B006CA34D /* Persistence.swift */,
 				C5A8EDBE27BC9B7B006CA34D /* FreespeechVT.xcdatamodeld */,
+				0C9BCDFD27C2C2900027A437 /* Tab Bar Views */,
 				C5A8EDB927BC9B7B006CA34D /* Preview Content */,
 			);
 			path = FreespeechVT;
@@ -145,8 +175,10 @@
 			files = (
 				C5A8EDBD27BC9B7B006CA34D /* Persistence.swift in Sources */,
 				C5A8EDC027BC9B7B006CA34D /* FreespeechVT.xcdatamodeld in Sources */,
+				0C9BCE0027C2C96D0027A437 /* Home.swift in Sources */,
 				C5A8EDB627BC9B79006CA34D /* ContentView.swift in Sources */,
 				C5A8EDB427BC9B79006CA34D /* FreespeechVTApp.swift in Sources */,
+				0C9BCE0327C2E6C40027A437 /* SpeechGrid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
