@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0C9BCE0027C2C96D0027A437 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9BCDFF27C2C96D0027A437 /* Home.swift */; };
 		0C9BCE0327C2E6C40027A437 /* SpeechGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9BCE0227C2E6C40027A437 /* SpeechGrid.swift */; };
+		0CDE0D0827C5375700229191 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE0D0727C5375700229191 /* Tile.swift */; };
+		0CDE0D0A27C5376400229191 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE0D0927C5376400229191 /* Audio.swift */; };
+		0CDE0D0D27C53A4000229191 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE0D0C27C53A4000229191 /* AppDelegate.swift */; };
 		C5A8EDB427BC9B79006CA34D /* FreespeechVTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8EDB327BC9B79006CA34D /* FreespeechVTApp.swift */; };
 		C5A8EDB627BC9B79006CA34D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8EDB527BC9B79006CA34D /* ContentView.swift */; };
 		C5A8EDB827BC9B7B006CA34D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A8EDB727BC9B7B006CA34D /* Assets.xcassets */; };
@@ -20,6 +23,10 @@
 /* Begin PBXFileReference section */
 		0C9BCDFF27C2C96D0027A437 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		0C9BCE0227C2E6C40027A437 /* SpeechGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechGrid.swift; sourceTree = "<group>"; };
+		0CDE0D0727C5375700229191 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		0CDE0D0927C5376400229191 /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
+		0CDE0D0B27C539AE00229191 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0CDE0D0C27C53A4000229191 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5A8EDB027BC9B79006CA34D /* FreespeechVT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreespeechVT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A8EDB327BC9B79006CA34D /* FreespeechVTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreespeechVTApp.swift; sourceTree = "<group>"; };
 		C5A8EDB527BC9B79006CA34D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +72,24 @@
 			path = Speech;
 			sourceTree = "<group>";
 		};
+		0CDE0D0527C5351F00229191 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0CDE0D0627C5361A00229191 /* Core Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				C5A8EDBE27BC9B7B006CA34D /* FreespeechVT.xcdatamodeld */,
+				C5A8EDBC27BC9B7B006CA34D /* Persistence.swift */,
+				0CDE0D0727C5375700229191 /* Tile.swift */,
+				0CDE0D0927C5376400229191 /* Audio.swift */,
+			);
+			path = "Core Data Model";
+			sourceTree = "<group>";
+		};
 		C5A8EDA727BC9B79006CA34D = {
 			isa = PBXGroup;
 			children = (
@@ -84,12 +109,14 @@
 		C5A8EDB227BC9B79006CA34D /* FreespeechVT */ = {
 			isa = PBXGroup;
 			children = (
+				0CDE0D0C27C53A4000229191 /* AppDelegate.swift */,
 				C5A8EDB327BC9B79006CA34D /* FreespeechVTApp.swift */,
 				C5A8EDB527BC9B79006CA34D /* ContentView.swift */,
-				C5A8EDB727BC9B7B006CA34D /* Assets.xcassets */,
-				C5A8EDBC27BC9B7B006CA34D /* Persistence.swift */,
-				C5A8EDBE27BC9B7B006CA34D /* FreespeechVT.xcdatamodeld */,
+				0CDE0D0627C5361A00229191 /* Core Data Model */,
+				0CDE0D0527C5351F00229191 /* Supporting Files */,
 				0C9BCDFD27C2C2900027A437 /* Tab Bar Views */,
+				C5A8EDB727BC9B7B006CA34D /* Assets.xcassets */,
+				0CDE0D0B27C539AE00229191 /* Info.plist */,
 				C5A8EDB927BC9B7B006CA34D /* Preview Content */,
 			);
 			path = FreespeechVT;
@@ -132,6 +159,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
+				ORGANIZATIONNAME = FreespeechVT;
 				TargetAttributes = {
 					C5A8EDAF27BC9B79006CA34D = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -173,9 +201,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CDE0D0A27C5376400229191 /* Audio.swift in Sources */,
 				C5A8EDBD27BC9B7B006CA34D /* Persistence.swift in Sources */,
 				C5A8EDC027BC9B7B006CA34D /* FreespeechVT.xcdatamodeld in Sources */,
+				0CDE0D0D27C53A4000229191 /* AppDelegate.swift in Sources */,
 				0C9BCE0027C2C96D0027A437 /* Home.swift in Sources */,
+				0CDE0D0827C5375700229191 /* Tile.swift in Sources */,
 				C5A8EDB627BC9B79006CA34D /* ContentView.swift in Sources */,
 				C5A8EDB427BC9B79006CA34D /* FreespeechVTApp.swift in Sources */,
 				0C9BCE0327C2E6C40027A437 /* SpeechGrid.swift in Sources */,
@@ -312,11 +343,12 @@
 				DEVELOPMENT_TEAM = 62CH5D7H86;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FreespeechVT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -326,7 +358,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -341,11 +373,12 @@
 				DEVELOPMENT_TEAM = 62CH5D7H86;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FreespeechVT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -355,7 +388,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
