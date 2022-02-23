@@ -18,6 +18,11 @@
 		C5A8EDBB27BC9B7B006CA34D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A8EDBA27BC9B7B006CA34D /* Preview Assets.xcassets */; };
 		C5A8EDBD27BC9B7B006CA34D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8EDBC27BC9B7B006CA34D /* Persistence.swift */; };
 		C5A8EDC027BC9B7B006CA34D /* FreespeechVT.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5A8EDBE27BC9B7B006CA34D /* FreespeechVT.xcdatamodeld */; };
+		C5FA8C9F27C5DFB9008D66D2 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA8C9E27C5DFB9008D66D2 /* UserData.swift */; };
+		C5FA8CA127C5DFD1008D66D2 /* WordsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA8CA027C5DFD1008D66D2 /* WordsData.swift */; };
+		C5FA8CA327C5DFE7008D66D2 /* WordStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA8CA227C5DFE7008D66D2 /* WordStruct.swift */; };
+		C5FA8CA527C5E0C0008D66D2 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA8CA427C5E0C0008D66D2 /* UtilityFunctions.swift */; };
+		C5FA8CA727C5E29C008D66D2 /* WordsData.json in Resources */ = {isa = PBXBuildFile; fileRef = C5FA8CA627C5E29C008D66D2 /* WordsData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +39,11 @@
 		C5A8EDBA27BC9B7B006CA34D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C5A8EDBC27BC9B7B006CA34D /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		C5A8EDBF27BC9B7B006CA34D /* FreespeechVT.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FreespeechVT.xcdatamodel; sourceTree = "<group>"; };
+		C5FA8C9E27C5DFB9008D66D2 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		C5FA8CA027C5DFD1008D66D2 /* WordsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsData.swift; sourceTree = "<group>"; };
+		C5FA8CA227C5DFE7008D66D2 /* WordStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordStruct.swift; sourceTree = "<group>"; };
+		C5FA8CA427C5E0C0008D66D2 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
+		C5FA8CA627C5E29C008D66D2 /* WordsData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WordsData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +85,7 @@
 		0CDE0D0527C5351F00229191 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C5FA8CA427C5E0C0008D66D2 /* UtilityFunctions.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -113,6 +124,7 @@
 				C5A8EDB327BC9B79006CA34D /* FreespeechVTApp.swift */,
 				C5A8EDB527BC9B79006CA34D /* ContentView.swift */,
 				0CDE0D0627C5361A00229191 /* Core Data Model */,
+				C5FA8C9D27C5DF9D008D66D2 /* Data Models */,
 				0CDE0D0527C5351F00229191 /* Supporting Files */,
 				0C9BCDFD27C2C2900027A437 /* Tab Bar Views */,
 				C5A8EDB727BC9B7B006CA34D /* Assets.xcassets */,
@@ -128,6 +140,17 @@
 				C5A8EDBA27BC9B7B006CA34D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C5FA8C9D27C5DF9D008D66D2 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				C5FA8CA627C5E29C008D66D2 /* WordsData.json */,
+				C5FA8C9E27C5DFB9008D66D2 /* UserData.swift */,
+				C5FA8CA027C5DFD1008D66D2 /* WordsData.swift */,
+				C5FA8CA227C5DFE7008D66D2 /* WordStruct.swift */,
+			);
+			path = "Data Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +214,7 @@
 			files = (
 				C5A8EDBB27BC9B7B006CA34D /* Preview Assets.xcassets in Resources */,
 				C5A8EDB827BC9B7B006CA34D /* Assets.xcassets in Resources */,
+				C5FA8CA727C5E29C008D66D2 /* WordsData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,13 +226,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CDE0D0A27C5376400229191 /* Audio.swift in Sources */,
+				C5FA8CA127C5DFD1008D66D2 /* WordsData.swift in Sources */,
 				C5A8EDBD27BC9B7B006CA34D /* Persistence.swift in Sources */,
 				C5A8EDC027BC9B7B006CA34D /* FreespeechVT.xcdatamodeld in Sources */,
 				0CDE0D0D27C53A4000229191 /* AppDelegate.swift in Sources */,
 				0C9BCE0027C2C96D0027A437 /* Home.swift in Sources */,
 				0CDE0D0827C5375700229191 /* Tile.swift in Sources */,
 				C5A8EDB627BC9B79006CA34D /* ContentView.swift in Sources */,
+				C5FA8CA327C5DFE7008D66D2 /* WordStruct.swift in Sources */,
 				C5A8EDB427BC9B79006CA34D /* FreespeechVTApp.swift in Sources */,
+				C5FA8CA527C5E0C0008D66D2 /* UtilityFunctions.swift in Sources */,
+				C5FA8C9F27C5DFB9008D66D2 /* UserData.swift in Sources */,
 				0C9BCE0327C2E6C40027A437 /* SpeechGrid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
