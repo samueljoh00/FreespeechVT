@@ -73,7 +73,103 @@
     
     {
         "id": "4055D506-91C6-42F6-9AF3-715882650837",
-        "name": "part",
+        "name": "yes",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    }
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "no",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "stop",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "go",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "hand",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "hello",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "goodbye",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "sit",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "stand",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "walk",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "run",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "the",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "get",
         "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
         "color":"blue",
         "inGrid":true
