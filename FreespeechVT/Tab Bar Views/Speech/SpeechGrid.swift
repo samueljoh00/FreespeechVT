@@ -19,31 +19,53 @@ struct SpeechGrid: View {
 
     var body: some View {
         VStack {
-            // add sentence preview box
-            TextEditor(text: $sentence)
-                .frame(height: 70)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.gray, lineWidth: 4)
-                )
+            HStack {
+                TextEditor(text: $sentence)
+                    .frame(height: 70)
+    //                .overlay(
+    //                    RoundedRectangle(cornerRadius: 16)
+    //                        .stroke(Color.gray, lineWidth: 4)
+    //                )
+                    .font(.custom("HelveticaNeue", size: 32))
+                    .multilineTextAlignment(.center)
+//                    .border(Color.black, width: 3)
+                Button(action: {
+                    sentence = ""
+                }) {
+                    Text("Clear")
+                        .foregroundColor(Color.black)
+                        .background(Rectangle()
+                                        .frame(width: 50, height: 50)
+                                        .opacity(0.3)
+                                        .foregroundColor(Color.gray))
+                }
+                .padding()
+            }
+                
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 3) {
                     ForEach(userData.wordsList, id: \.self) { word in
-                        Text(word.name)
-                            .background(Rectangle()
-                                            .frame(width: 100, height: 100)
-                                            .opacity(0.3)
-                                            .foregroundColor(Color.blue))
+                        Button(action: {
+                            sentence = sentence + " " + word.name
+                        }) {
+                            Text(word.name)
+                                .foregroundColor(Color.black)
+                                .background(Rectangle()
+                                                .frame(width: 100, height: 100)
+                                                .opacity(0.3)
+                                                .foregroundColor(Color.blue))
+                        }
+                        .padding(.vertical, 50)
                     }
-                    .padding(.vertical, 50)
                 }
             }
+            .border(Color.black, width: 3)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(userData.wordsList, id: \.self) { word in
                         Button(action: {
-                            //
+                            sentence = sentence + " " + word.name
                         }) {
                             VStack {
                                 Text(word.name)
@@ -60,10 +82,10 @@ struct SpeechGrid: View {
                 } // end of overall hstack
             } // end of scrollview
             .padding(.vertical, 20)
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.gray, lineWidth: 4)
-            )
+//            .overlay(
+//                RoundedRectangle(cornerRadius: 16)
+//                    .stroke(Color.gray, lineWidth: 4)
+//            )
         }
     }
 }
