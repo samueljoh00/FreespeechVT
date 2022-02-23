@@ -101,5 +101,261 @@
         "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
         "color":"blue",
         "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "to",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "the",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "a",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "an",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "water",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "food",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "hungry",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "full",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "please",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "cannot",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "box",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "cat",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "wet",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "loud",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "too",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "quiet",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "tasty",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "want",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "book",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "it",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "clean",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "hair",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "phone",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "soft",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "eyes",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "tall",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "green",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "smell",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "black",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "dry",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "sleep",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "me",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
     }
 ]
