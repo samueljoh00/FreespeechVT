@@ -21,7 +21,7 @@ struct SpeechGrid: View {
         VStack {
             // add sentence preview box
             TextEditor(text: $sentence)
-                .frame(height: 300)
+                .frame(height: 70)
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 3) {
                     ForEach(userData.wordsList, id: \.self) { word in
