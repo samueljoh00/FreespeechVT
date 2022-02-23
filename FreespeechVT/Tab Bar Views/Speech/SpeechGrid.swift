@@ -10,16 +10,21 @@ import Swift
 import SwiftUI
 
 struct SpeechGrid: View {
-    let columns = [ GridItem(.adaptive(minimum: 100), spacing: 3) ]
+    
+    @EnvironmentObject var userData: UserData
+    
+    let columns = [ GridItem(.adaptive(minimum: 100), spacing: 10) ]
 
     var body: some View {
-//        ScrollView {
-//            LazyVGrid(columns: columns, spacing: 3) {
-//                ForEach(/* Data of each tile */) {
-//                    Text(/* Text of the current word */)
-//                }
-//            }
-//        }
-        Text("SpeechGrid")
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 3) {
+                ForEach(userData.wordsList, id: \.self) { word in
+                    Text(word.name)
+                        .background(Rectangle()
+                                        .frame(width: 100, height: 100)
+                                        .opacity(100))
+                }
+            }
+        }
     }
 }

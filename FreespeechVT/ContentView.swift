@@ -18,7 +18,7 @@ struct ContentView: View {
                 }
             SpeechGrid()
                 .tabItem {
-                    
+                    Text("Speech")
                 }
         }
     }

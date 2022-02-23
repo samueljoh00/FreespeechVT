@@ -35,6 +35,7 @@ struct FreespeechVTApp: App {
                     @Environment(\.managedObjectContext) var managedObjectContext
                  */
                 .environment(\.managedObjectContext, managedObjectContext)
+                .environmentObject(UserData())
         }
         .onChange(of: scenePhase) { _ in
             /*
