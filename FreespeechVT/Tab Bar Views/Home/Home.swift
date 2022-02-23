@@ -12,7 +12,7 @@ import Swift
 struct Home: View {
     var body: some View {
         VStack {
-           Text("Home")
+           Text("Welcome to the Freespeech App!")
         }
     }
 }

@@ -1,28 +1,20 @@
 //
-//  CountriesData.swift
-//  Countries
+//  WordsData.swift
+//  FreespeechVT
 //
-//  Created by Osman Balci on 8/2/20.
-//  Copyright © 2020 Osman Balci. All rights reserved.
+//  Created by Samuel Oh on 2/22/22.
 //
  
 import Foundation
 import SwiftUI
  
-// Global array of Country structs
 var wordsStructList = [Word]()
  
-/*
- Each orderedSearchableCountriesList element contains
- selected country attributes separated by vertical lines
- for inclusion in the search by the Search Bar in FavoritesList:
-      "id|name|alpha2code|capital|languages|currency"
- */
 var orderedSearchableWordsList = [String]()
  
 /*
  *********************************
- MARK: - Read Countries Data Files
+ MARK: - Read Words Data Files
  *********************************
  */
 public func readWordsDataFiles() {
@@ -30,7 +22,7 @@ public func readWordsDataFiles() {
     var documentDirectoryHasFiles = false
     let wordsDataFullFilename = "WordsData.json"
    
-    // Obtain URL of the CountriesData.json file in document directory on the user's device
+    // Obtain URL of the WordsData.json file in document directory on the user's device
     // Global constant documentDirectory is defined in UtilityFunctions.swift
     let urlOfJsonFileInDocumentDirectory = documentDirectory.appendingPathComponent(wordsDataFullFilename)
  
@@ -44,7 +36,7 @@ public func readWordsDataFiles() {
         _ = try Data(contentsOf: urlOfJsonFileInDocumentDirectory)
        
         /*
-         If 'try' is successful, it means that the CountriesData.json
+         If 'try' is successful, it means that the WordsData.json
          file exists in document directory on the user's device.
          ---
          If 'try' is unsuccessful, it throws an exception and
@@ -57,7 +49,7 @@ public func readWordsDataFiles() {
          --------------------------------------------------
          |   The app is being launched after first time   |
          --------------------------------------------------
-         The CountriesData.json file exists in document directory on the user's device.
+         The WordsData.json file exists in document directory on the user's device.
          Load it from Document Directory into countryStructList.
          */
        
@@ -72,7 +64,7 @@ public func readWordsDataFiles() {
          ----------------------------------------------------
          |   The app is being launched for the first time   |
          ----------------------------------------------------
-         The CountriesData.json file does not exist in document directory on the user's device.
+         The WordsData.json file does not exist in document directory on the user's device.
          Load it from main bundle (project folder) into countryStructList.
         
          This catch section will be executed only once when the app is launched for the first time
@@ -85,11 +77,11 @@ public func readWordsDataFiles() {
        
         /*
          -------------------------------------------------------------
-         |   Create global variable orderedSearchableCountriesList   |
+         |   Create global variable orderedSearchableWordsList   |
          -------------------------------------------------------------
          This list has two purposes:
         
-            (1) preserve the order of countries according to user's liking, and
+            (1) preserve the order of Words according to user's liking, and
             (2) enable search of selected country attributes by the SearchBar in FavoritesList.
         
          Each list element consists of "id|name|alpha2code|capital|languages|currency".
@@ -107,7 +99,7 @@ public func readWordsDataFiles() {
    
     /*
     ----------------------------------------
-    Read OrderedSearchableCountriesList File
+    Read OrderedSearchableWordsList File
     ----------------------------------------
     */
     if documentDirectoryHasFiles {
@@ -128,13 +120,13 @@ public func readWordsDataFiles() {
  
 /*
  ********************************************************
- MARK: - Write Countries Data Files to Document Directory
+ MARK: - Write Words Data Files to Document Directory
  ********************************************************
  */
 public func writeWordsDataFiles() {
     /*
     --------------------------------------------------------------------------
-    Write countryStructList into CountriesData.json file in Document Directory
+    Write countryStructList into WordsData.json file in Document Directory
     --------------------------------------------------------------------------
     */
    
@@ -155,8 +147,8 @@ public func writeWordsDataFiles() {
    
     /*
     ------------------------------------------------------
-    Write orderedSearchableCountriesList into a file named
-    OrderedSearchableCountriesList in Document Directory
+    Write orderedSearchableWordsList into a file named
+    OrderedSearchableWordsList in Document Directory
     ------------------------------------------------------
     */
  
@@ -174,9 +166,9 @@ public func writeWordsDataFiles() {
      The flag "atomically" specifies whether the file should be written atomically or not.
     
      If flag atomically is TRUE, the file is first written to an auxiliary file, and
-     then the auxiliary file is renamed as OrderedSearchableCountriesList.
+     then the auxiliary file is renamed as OrderedSearchableWordsList.
     
-     If flag atomically is FALSE, the file is written directly to OrderedSearchableCountriesList.
+     If flag atomically is FALSE, the file is written directly to OrderedSearchableWordsList.
      This is a bad idea since the file can be corrupted if the system crashes during writing.
     
      The TRUE option guarantees that the file will not be corrupted even if the system crashes during writing.

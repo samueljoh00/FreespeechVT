@@ -1,9 +1,8 @@
 //
 //  UtilityFunctions.swift
-//  Countries
+//  FreespeechVT
 //
-//  Created by Osman Balci on 8/2/20.
-//  Copyright © 2020 Osman Balci. All rights reserved.
+//  Created by Samuel Oh on 2/22/22.
 //
  
 import Foundation

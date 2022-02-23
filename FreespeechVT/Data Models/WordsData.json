@@ -357,5 +357,78 @@
         "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
         "color":"blue",
         "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "morning",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "night",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "bright",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "dark",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "bad",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "great",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "moon",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "sun",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
+    },
+    
+    {
+        "id": "4055D506-91C6-42F6-9AF3-715882650837",
+        "name": "stars",
+        "imageUrl": "https://manta.cs.vt.edu/iOS/flags/ar.png",
+        "color":"blue",
+        "inGrid":true
     }
 ]
+
