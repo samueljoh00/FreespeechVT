@@ -8,6 +8,7 @@
 import Foundation
 import Swift
 import SwiftUI
+import AVFoundation
 
 struct SpeechGrid: View {
     
@@ -16,10 +17,32 @@ struct SpeechGrid: View {
     let columns = [ GridItem(.adaptive(minimum: 100), spacing: 20) ]
     
     @State private var sentence = ""
+    
+    // Create an utterance.
+    let utterance = AVSpeechUtterance(string: "")
+    
+    // Create a speech synthesizer.
+    let synthesizer = AVSpeechSynthesizer()
+
+    func speak(_ utterance: AVSpeechUtterance) {
+        let utterance = AVSpeechUtterance(string: sentence)
+            self.synthesizer.speak(utterance)
+        }
 
     var body: some View {
         VStack {
             HStack {
+                Button(action: {
+                    speak(utterance)
+                }) {
+                    Text("Speak")
+                        .foregroundColor(Color.black)
+                        .background(Rectangle()
+                                        .frame(width: 50, height: 50)
+                                        .opacity(0.3)
+                                        .foregroundColor(Color.gray))
+                }
+                .padding()
                 TextEditor(text: $sentence)
                     .frame(height: 70)
     //                .overlay(
