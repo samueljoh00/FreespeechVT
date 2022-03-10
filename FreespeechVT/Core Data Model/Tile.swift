@@ -13,7 +13,7 @@ import SwiftUI
 public class Tile: NSManagedObject, Identifiable {
     
     @NSManaged public var word: String?
-    
+    @NSManaged public var photo: Photo?
 }
 
 extension Tile {

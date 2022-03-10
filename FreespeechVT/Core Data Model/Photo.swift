@@ -9,8 +9,9 @@
 import Foundation
 import CoreData
 
-public class Audio: NSManagedObject, Identifiable {
-    @NSManaged public var voiceRecording: Data?
+public class Photo: NSManagedObject, Identifiable {
+    @NSManaged public var tilePhoto: Data?
+    @NSManaged public var tile: Tile?
 }
 
 

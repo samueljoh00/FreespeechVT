@@ -20,6 +20,10 @@ struct ContentView: View {
                 .tabItem {
                     Text("Speech")
                 }
+            Settings()
+                .tabItem {
+                    Text("Settings")
+                }
         }
     }
 }
