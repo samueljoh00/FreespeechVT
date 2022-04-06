@@ -18,10 +18,12 @@ struct ContentView: View {
                 }
             SpeechGrid()
                 .tabItem {
-                    Text("Speech")
+                    Image(systemName: "square.grid.3x2.fill")
+                    Text("Tiles")
                 }
             Settings()
                 .tabItem {
+                    Image(systemName: "gear")
                     Text("Settings")
                 }
         }

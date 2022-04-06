@@ -23,11 +23,6 @@ struct Settings: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Show / Hide Entered Values")) {
-                    Toggle(isOn: $showEnteredValues) {
-                        Text("Show Entered Values")
-                    }
-                }
                 Section(header: Text("")) {
                     NavigationLink(destination: AddTile()) {
                         HStack {

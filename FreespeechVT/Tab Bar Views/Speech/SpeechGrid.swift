@@ -12,7 +12,13 @@ import AVFoundation
 
 struct SpeechGrid: View {
     
-    @EnvironmentObject var userData: UserData
+    // ❎ CoreData managedObjectContext reference
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
+    // ❎ CoreData FetchRequest returning all music album entities in the database
+    @FetchRequest(fetchRequest: Tile.allTilesFetchRequest()) var allTiles: FetchedResults<Tile>
+    
+    //@EnvironmentObject var userData: UserData
     
     let columns = [ GridItem(.adaptive(minimum: 100), spacing: 20) ]
     
@@ -67,11 +73,12 @@ struct SpeechGrid: View {
                 
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 3) {
-                    ForEach(userData.wordsList, id: \.self) { word in
+                    ForEach(allTiles, id: \.self) { word in
                         Button(action: {
-                            sentence = sentence + " " + word.name
+                            sentence = sentence + " " + (word.word ?? "");
+                            self.synthesizer.speak(AVSpeechUtterance(string: word.word ?? ""))
                         }) {
-                            Text(word.name)
+                            Text(word.word ?? "")
                                 .foregroundColor(Color.black)
                                 .background(Rectangle()
                                                 .frame(width: 100, height: 100)
@@ -86,12 +93,12 @@ struct SpeechGrid: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(userData.wordsList, id: \.self) { word in
+                    ForEach(allTiles, id: \.self) { word in
                         Button(action: {
-                            sentence = sentence + " " + word.name
+                            sentence = sentence + " " + (word.word ?? "")
                         }) {
                             VStack {
-                                Text(word.name)
+                                Text(word.word ?? "")
                                     .foregroundColor(Color.black)
                                     .background(Rectangle()
                                                     .frame(width: 100, height: 100)

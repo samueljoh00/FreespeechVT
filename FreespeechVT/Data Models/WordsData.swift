@@ -7,176 +7,115 @@
  
 import Foundation
 import SwiftUI
+import CoreData
  
-var wordsStructList = [Word]()
- 
-var orderedSearchableWordsList = [String]()
- 
+fileprivate var wordsStructList = [Word]()
+
 /*
- *********************************
- MARK: - Read Words Data Files
- *********************************
+ ***********************************
+ MARK: Create Tiles Database
+ ***********************************
  */
-public func readWordsDataFiles() {
-   
-    var documentDirectoryHasFiles = false
-    let wordsDataFullFilename = "WordsData.json"
-   
-    // Obtain URL of the WordsData.json file in document directory on the user's device
-    // Global constant documentDirectory is defined in UtilityFunctions.swift
-    let urlOfJsonFileInDocumentDirectory = documentDirectory.appendingPathComponent(wordsDataFullFilename)
- 
+public func createTilesDatabse() {
+
+    wordsStructList = decodeJsonFileIntoArrayOfStructs(fullFilename: "WordsData.json", fileLocation: "Main Bundle")
+    
+    populateDatabase()
+}
+
+/*
+*********************************************
+MARK: Populate Database If Not Already Done
+*********************************************
+*/
+func populateDatabase() {
+    
+    // ❎ Get object reference of CoreData managedObjectContext from the persistent container
+    let managedObjectContext = PersistenceController.shared.persistentContainer.viewContext
+    
+    //----------------------------
+    // ❎ Define the Fetch Request
+    //----------------------------
+    let fetchRequest = NSFetchRequest<Tile>(entityName: "Tile")
+    fetchRequest.sortDescriptors = [NSSortDescriptor(key: "word", ascending: true)]
+    
+    var listOfAllTileEntitiesInDatabase = [Tile]()
+    
     do {
-        /*
-         Try to get the contents of the file. The left hand side is
-         suppressed by using '_' since we do not use it at this time.
-         Our purpose is just to check to see if the file is there or not.
-         */
- 
-        _ = try Data(contentsOf: urlOfJsonFileInDocumentDirectory)
-       
-        /*
-         If 'try' is successful, it means that the WordsData.json
-         file exists in document directory on the user's device.
-         ---
-         If 'try' is unsuccessful, it throws an exception and
-         executes the code under 'catch' below.
-         */
-       
-        documentDirectoryHasFiles = true
-       
-        /*
-         --------------------------------------------------
-         |   The app is being launched after first time   |
-         --------------------------------------------------
-         The WordsData.json file exists in document directory on the user's device.
-         Load it from Document Directory into countryStructList.
-         */
-       
-        // The function is given in UtilityFunctions.swift
-        wordsStructList = decodeJsonFileIntoArrayOfStructs(fullFilename: wordsDataFullFilename, fileLocation: "Document Directory")
-        print("WordsData is loaded from document directory")
-       
+        //-----------------------------
+        // ❎ Execute the Fetch Request
+        //-----------------------------
+        listOfAllTileEntitiesInDatabase = try managedObjectContext.fetch(fetchRequest)
     } catch {
-        documentDirectoryHasFiles = false
-       
-        /*
-         ----------------------------------------------------
-         |   The app is being launched for the first time   |
-         ----------------------------------------------------
-         The WordsData.json file does not exist in document directory on the user's device.
-         Load it from main bundle (project folder) into countryStructList.
-        
-         This catch section will be executed only once when the app is launched for the first time
-         since we write and read the files in document directory on the user's device after first use.
-         */
-       
-        // The function is given in UtilityFunctions.swift
-        wordsStructList = decodeJsonFileIntoArrayOfStructs(fullFilename: wordsDataFullFilename, fileLocation: "Main Bundle")
-        print("WordsData is loaded from main bundle")
-       
-        /*
-         -------------------------------------------------------------
-         |   Create global variable orderedSearchableWordsList   |
-         -------------------------------------------------------------
-         This list has two purposes:
-        
-            (1) preserve the order of Words according to user's liking, and
-            (2) enable search of selected country attributes by the SearchBar in FavoritesList.
-        
-         Each list element consists of "id|name|alpha2code|capital|languages|currency".
-         We chose these attributes separated by vertical lines to be included in the search.
-         We separate them with "|" so that we can extract its components separately.
-         For example, to obtain the id: list item.components(separatedBy: "|")[0]
-         */
-        for word in wordsStructList {
-            let selectedWordAttributesForSearch = "\(word.id)|\(word.name)|\(word.imageUrl)|\(word.color)|\(word.inGrid)"
-           
-            orderedSearchableWordsList.append(selectedWordAttributesForSearch)
-        }
-       
-    }   // End of do-catch
-   
-    /*
-    ----------------------------------------
-    Read OrderedSearchableWordsList File
-    ----------------------------------------
-    */
-    if documentDirectoryHasFiles {
-        // Obtain URL of the file in document directory on the user's device
-        let urlOfFileInDocDir = documentDirectory.appendingPathComponent("OrderedSearchableWordsList")
-       
-        // Instantiate an NSArray object and initialize it with the contents of the file
-        let arrayFromFile: NSArray? = NSArray(contentsOf: urlOfFileInDocDir)
-       
-        if let arrayObtained = arrayFromFile {
-            // Store the unique id of the created array into the global variable
-            orderedSearchableWordsList = arrayObtained as! [String]
-        } else {
-            print("OrderedSearchableWordsList file is not found in document directory on the user's device!")
-        }
+        print("Populate Database Failed!")
+        return
     }
-}
- 
-/*
- ********************************************************
- MARK: - Write Words Data Files to Document Directory
- ********************************************************
- */
-public func writeWordsDataFiles() {
-    /*
-    --------------------------------------------------------------------------
-    Write countryStructList into WordsData.json file in Document Directory
-    --------------------------------------------------------------------------
-    */
-   
-    // Obtain URL of the JSON file into which data will be written
-    let urlOfJsonFileInDocumentDirectory: URL? = documentDirectory.appendingPathComponent("WordsData.json")
- 
-    // Encode countryStructList into JSON and write it into the JSON file
-    let encoder = JSONEncoder()
-    if let encoded = try? encoder.encode(wordsStructList) {
+    
+    if listOfAllTileEntitiesInDatabase.count > 0 {
+        // Database has already been populated
+        print("Database has already been populated!")
+        return
+    }
+    
+    print("Database will be populated!")
+    
+    for aTile in wordsStructList {
+        /*
+         ======================================================
+         Create an instance of the Album Entity and dress it up
+         ======================================================
+        */
+        
+        // ❎ Create an instance of the Album entity in CoreData managedObjectContext
+        let tileEntity = Tile(context: managedObjectContext)
+        
+        // ❎ Dress it up by specifying its attributes
+        tileEntity.word = aTile.name
+        
+
+        /*
+         ======================================================
+         Create an instance of the Photo Entity and dress it up
+         ======================================================
+         */
+        
+        // ❎ Create an instance of the Photo Entity in CoreData managedObjectContext
+        let photoEntity = Photo(context: managedObjectContext)
+        
+        // Obtain the album cover photo image from Assets.xcassets as UIImage
+        // LOOK HERE FOR THE SETTING OF IMAGE URL
+        let photoUIImage = UIImage(named: aTile.imageUrl)
+        
+        // Convert photoUIImage to data of type Data (Binary Data) in JPEG format with 100% quality
+        let photoData = photoUIImage?.jpegData(compressionQuality: 1.0)
+        
+        // Assign photoData to Core Data entity attribute of type Data (Binary Data)
+        photoEntity.tilePhoto = photoData!
+        
+        /*
+         ==============================
+         Establish Entity Relationships
+         ==============================
+        */
+        
+        // ❎ Establish One-to-One relationship between Contact and Photo
+        tileEntity.photo = photoEntity      // A Contact can have only one photo
+        photoEntity.tile = tileEntity      // A photo can belong to only one album
+        
+        /*
+         ==================================
+         Save Changes to Core Data Database
+         ==================================
+        */
+        
+        // ❎ CoreData Save operation
         do {
-            try encoded.write(to: urlOfJsonFileInDocumentDirectory!)
+            try managedObjectContext.save()
         } catch {
-            fatalError("Unable to write encoded words data to document directory!")
+            return
         }
-    } else {
-        fatalError("Unable to encode words data!")
-    }
-   
-    /*
-    ------------------------------------------------------
-    Write orderedSearchableWordsList into a file named
-    OrderedSearchableWordsList in Document Directory
-    ------------------------------------------------------
-    */
- 
-    // Obtain URL of the file in document directory on the user's device
-    let urlOfFileInDocDirectory = documentDirectory.appendingPathComponent("OrderedSearchableWordsList")
- 
-    /*
-    Swift Array does not yet provide the 'write' function, but NSArray does.
-    Therefore, typecast the Swift array as NSArray so that we can write it.
-    */
-   
-    (orderedSearchableWordsList as NSArray).write(to: urlOfFileInDocDirectory, atomically: true)
-   
-    /*
-     The flag "atomically" specifies whether the file should be written atomically or not.
-    
-     If flag atomically is TRUE, the file is first written to an auxiliary file, and
-     then the auxiliary file is renamed as OrderedSearchableWordsList.
-    
-     If flag atomically is FALSE, the file is written directly to OrderedSearchableWordsList.
-     This is a bad idea since the file can be corrupted if the system crashes during writing.
-    
-     The TRUE option guarantees that the file will not be corrupted even if the system crashes during writing.
-     */
+        
+    }   // End of for loop
+
 }
- 
- 
- 
- 
- 
 

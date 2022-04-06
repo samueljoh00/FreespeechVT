@@ -31,7 +31,6 @@ struct AddTile: View {
                 HStack {
                     TextField("Enter Word", text: $word)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .autocapitalization(.allCharacters)
 //                        .frame(width: 500, height: 36)
                     
                     Button(action: {
@@ -61,7 +60,7 @@ struct AddTile: View {
                     }
                 }   // End of VStack
             }
-            Section(header: Text("Contact Photo")) {
+            Section(header: Text("Tile Photo")) {
                 photoImage
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -75,7 +74,7 @@ struct AddTile: View {
         .font(.system(size: 14))
         .alert(isPresented: $showInputDataMissingAlert, content: { inputDataMissingAlert })
         .alert(isPresented: $showTileAddedAlert, content: { tileAddedAlert })
-        .navigationBarTitle(Text("Add Contact"), displayMode: .inline)
+        .navigationBarTitle(Text("Add Tile"), displayMode: .inline)
         .navigationBarItems(trailing:
             Button(action: {
                 if inputDataValidated() {
@@ -103,10 +102,10 @@ struct AddTile: View {
     var photoImage: Image {
         if let imageData = photoImageData {
             // The public function is given in UtilityFunctions.swift
-            let imageView = getImageFromBinaryData(binaryData: imageData, defaultFilename: "DefaultContactPhoto")
+            let imageView = getImageFromBinaryData(binaryData: imageData, defaultFilename: "ImageUnavailable")
             return imageView
         } else {
-            return Image("DefaultContactPhoto")
+            return Image("ImageUnavailable")
         }
     }
     
@@ -170,7 +169,7 @@ struct AddTile: View {
             newPhoto.tilePhoto = imageData
         } else {
             // Obtain the album cover default image from Assets.xcassets as UIImage
-            let photoUIImage = UIImage(named: "AlbumCoverDefaultImage")
+            let photoUIImage = UIImage(named: "ImageUnavailable")
             
             // Convert photoUIImage to data of type Data (Binary Data) in JPEG format with 100% quality
             let photoData = photoUIImage?.jpegData(compressionQuality: 1.0)

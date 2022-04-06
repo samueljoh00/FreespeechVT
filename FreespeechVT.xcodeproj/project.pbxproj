@@ -22,7 +22,6 @@
 		C5A8EDBB27BC9B7B006CA34D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A8EDBA27BC9B7B006CA34D /* Preview Assets.xcassets */; };
 		C5A8EDBD27BC9B7B006CA34D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8EDBC27BC9B7B006CA34D /* Persistence.swift */; };
 		C5A8EDC027BC9B7B006CA34D /* FreespeechVT.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5A8EDBE27BC9B7B006CA34D /* FreespeechVT.xcdatamodeld */; };
-		C5FA8C9F27C5DFB9008D66D2 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA8C9E27C5DFB9008D66D2 /* UserData.swift */; };
 		C5FA8CA127C5DFD1008D66D2 /* WordsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA8CA027C5DFD1008D66D2 /* WordsData.swift */; };
 		C5FA8CA327C5DFE7008D66D2 /* WordStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA8CA227C5DFE7008D66D2 /* WordStruct.swift */; };
 		C5FA8CA527C5E0C0008D66D2 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA8CA427C5E0C0008D66D2 /* UtilityFunctions.swift */; };
@@ -47,7 +46,6 @@
 		C5A8EDBA27BC9B7B006CA34D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C5A8EDBC27BC9B7B006CA34D /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		C5A8EDBF27BC9B7B006CA34D /* FreespeechVT.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FreespeechVT.xcdatamodel; sourceTree = "<group>"; };
-		C5FA8C9E27C5DFB9008D66D2 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		C5FA8CA027C5DFD1008D66D2 /* WordsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsData.swift; sourceTree = "<group>"; };
 		C5FA8CA227C5DFE7008D66D2 /* WordStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordStruct.swift; sourceTree = "<group>"; };
 		C5FA8CA427C5E0C0008D66D2 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
@@ -147,10 +145,10 @@
 		C5A8EDB227BC9B79006CA34D /* FreespeechVT */ = {
 			isa = PBXGroup;
 			children = (
-				0C1E9D8927D920D800F60280 /* Take or Pick Photo */,
 				0CDE0D0C27C53A4000229191 /* AppDelegate.swift */,
 				C5A8EDB327BC9B79006CA34D /* FreespeechVTApp.swift */,
 				C5A8EDB527BC9B79006CA34D /* ContentView.swift */,
+				0C1E9D8927D920D800F60280 /* Take or Pick Photo */,
 				0CDE0D0627C5361A00229191 /* Core Data Model */,
 				C5FA8C9D27C5DF9D008D66D2 /* Data Models */,
 				0CDE0D0527C5351F00229191 /* Supporting Files */,
@@ -174,7 +172,6 @@
 			isa = PBXGroup;
 			children = (
 				C5FA8CA627C5E29C008D66D2 /* WordsData.json */,
-				C5FA8C9E27C5DFB9008D66D2 /* UserData.swift */,
 				C5FA8CA027C5DFD1008D66D2 /* WordsData.swift */,
 				C5FA8CA227C5DFE7008D66D2 /* WordStruct.swift */,
 			);
@@ -268,7 +265,6 @@
 				0C1E9D8D27D920D800F60280 /* PhotoCaptureView.swift in Sources */,
 				C5FA8CA527C5E0C0008D66D2 /* UtilityFunctions.swift in Sources */,
 				0C1E9D8C27D920D800F60280 /* ImagePicker.swift in Sources */,
-				C5FA8C9F27C5DFB9008D66D2 /* UserData.swift in Sources */,
 				0C9BCE0327C2E6C40027A437 /* SpeechGrid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
