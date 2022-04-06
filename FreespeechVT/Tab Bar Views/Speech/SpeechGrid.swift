@@ -78,18 +78,24 @@ struct SpeechGrid: View {
                             sentence = sentence + " " + (word.word ?? "");
                             self.synthesizer.speak(AVSpeechUtterance(string: word.word ?? ""))
                         }) {
-                            Text(word.word ?? "")
-                                .foregroundColor(Color.black)
+                            VStack {
+                                getImageFromBinaryData(binaryData: word.photo?.tilePhoto, defaultFilename: "ImageUnavailable")
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                Text(word.word ?? "")
+                                    .foregroundColor(Color.black)
+                                }
                                 .background(Rectangle()
-                                                .frame(width: 100, height: 100)
-                                                .opacity(0.3)
-                                                .foregroundColor(Color.blue))
+                                    .frame(width: 100, height: 100)
+                                    .opacity(0.3)
+                                    .foregroundColor(Color.blue))
                         }
-                        .padding(.vertical, 50)
+                        .padding(.vertical, 25)
                     }
                 }
             }
             .border(Color.black, width: 3)
+//            .tabViewStyle(.page)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {

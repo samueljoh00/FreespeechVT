@@ -71,7 +71,6 @@ func populateDatabase() {
         
         // ❎ Dress it up by specifying its attributes
         tileEntity.word = aTile.name
-        
 
         /*
          ======================================================
