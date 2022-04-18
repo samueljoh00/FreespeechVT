@@ -8,6 +8,9 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
+
+let temporaryAudioFileUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("temp.m4a")
 
 struct AddTile: View {
     
@@ -17,6 +20,8 @@ struct AddTile: View {
     
     @State private var showTileAddedAlert = false
     @State private var showInputDataMissingAlert = false
+    
+    @State private var recordingVoice = false
     
     var photoTakeOrPickChoices = ["Camera", "Photo Library"]
     @State private var showImagePicker = false
@@ -59,6 +64,13 @@ struct AddTile: View {
                             .padding()
                     }
                 }   // End of VStack
+            }
+            Section(header: Text("Take Notes by Recording Your Voice")) {
+                Button(action: {
+                    self.voiceRecordingMicrophoneTapped()
+                }) {
+                    voiceRecordingMicrophoneLabel
+                }
             }
             Section(header: Text("Tile Photo")) {
                 photoImage
@@ -177,6 +189,16 @@ struct AddTile: View {
             // Assign photoData to Core Data entity attribute of type Data (Binary Data)
             newPhoto.tilePhoto = photoData!
         }
+        let aAudio = Audio(context: self.managedObjectContext)
+        
+        // ❎ Dress it up by specifying its attribute
+        do {
+            // Try to get the audio file data from audioFileUrl
+            aAudio.voiceRecording = try Data(contentsOf: temporaryAudioFileUrl, options: NSData.ReadingOptions.mappedIfSafe)
+            
+        } catch {
+            aAudio.voiceRecording = nil
+        }
         
         /*
          ==============================
@@ -187,6 +209,8 @@ struct AddTile: View {
         // Establish One-to-One Relationship between Album and Photo
         newTile.photo = newPhoto    // An album can have only one photo
         newPhoto.tile = newTile    // A photo can belong to only one album
+        newTile.audio = aAudio
+        aAudio.relevantTile = newTile
         
         /*
          ===========================================
@@ -198,6 +222,78 @@ struct AddTile: View {
             try managedObjectContext.save()
         } catch {
             return
+        }
+    }
+    
+    /*
+     ----------------------------------------
+     MARK: - Voice Recording Microphone Label
+     ----------------------------------------
+     */
+    var voiceRecordingMicrophoneLabel: some View {
+        VStack {
+            Image(systemName: recordingVoice ? "mic.fill" : "mic.slash.fill")
+                .imageScale(.large)
+                .font(Font.title.weight(.medium))
+                .foregroundColor(.blue)
+                .padding()
+            Text(recordingVoice ? "Recording your voice... Tap to Stop!" : "Start Recording!")
+                .multilineTextAlignment(.center)
+        }
+    }
+    
+    /*
+     ---------------------------------------
+     MARK: Voice Recording Microphone Tapped
+     ---------------------------------------
+     */
+    func voiceRecordingMicrophoneTapped() {
+        if audioRecorder == nil {
+            self.recordingVoice = true
+            startRecording()
+        } else {
+            self.recordingVoice = false
+            finishRecording()
+        }
+    }
+    
+    /*
+     ----------------------------------
+     MARK: Finish Voice Notes Recording
+     ----------------------------------
+     */
+    func finishRecording() {
+        audioRecorder.stop()
+        audioRecorder = nil
+        self.recordingVoice = false
+    }
+    
+    /*
+     ---------------------------------
+     MARK: Start Voice Notes Recording
+     ---------------------------------
+     */
+    func startRecording() {
+        
+        let settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 12000,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
+        
+        do {
+            // Delete the temporary file at
+            try FileManager.default.removeItem(at: temporaryAudioFileUrl)
+        } catch {
+            // Take no action
+        }
+        
+        do {
+            audioRecorder = try AVAudioRecorder(url: temporaryAudioFileUrl, settings: settings)
+            audioRecorder.record()
+        } catch {
+            finishRecording()
         }
     }
 }

@@ -23,6 +23,7 @@ struct SpeechGrid: View {
     let columns = [ GridItem(.adaptive(minimum: 100), spacing: 20) ]
     
     @State private var sentence = ""
+    @EnvironmentObject var audioPlayer: AudioPlayer
     
     // Create an utterance.
     let utterance = AVSpeechUtterance(string: "")
@@ -75,8 +76,16 @@ struct SpeechGrid: View {
                 LazyVGrid(columns: columns, spacing: 3) {
                     ForEach(allTiles, id: \.self) { word in
                         Button(action: {
-                            sentence = sentence + " " + (word.word ?? "");
-                            self.synthesizer.speak(AVSpeechUtterance(string: word.word ?? ""))
+                            if (word.audio?.voiceRecording != nil) {
+                                sentence = sentence + " " + (word.word ?? "");
+                                // play word audios
+                                self.audioPlayer.createAudioPlayer(audioData: (word.audio?.voiceRecording)!)
+                                self.audioPlayer.startAudioPlayer()
+                            }
+                            else {
+                                sentence = sentence + " " + (word.word ?? "");
+                                self.synthesizer.speak(AVSpeechUtterance(string: word.word ?? ""))
+                            }
                         }) {
                             VStack {
                                 getImageFromBinaryData(binaryData: word.photo?.tilePhoto, defaultFilename: "ImageUnavailable")
