@@ -11,11 +11,6 @@ import CoreData
 struct ContentView: View {
     var body: some View {
         TabView {
-            Home()
-                .tabItem {
-                    Image(systemName: "house.fill")
-                    Text("Home")
-                }
             SpeechGrid()
                 .tabItem {
                     Image(systemName: "square.grid.3x2.fill")
@@ -25,6 +20,11 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
+                }
+            References()
+                .tabItem {
+                    Image(systemName: "menucard.fill")
+                    Text("References")
                 }
         }
     }
