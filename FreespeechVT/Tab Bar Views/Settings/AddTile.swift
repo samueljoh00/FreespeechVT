@@ -29,6 +29,7 @@ struct AddTile: View {
     @State private var photoTakeOrPickIndex = 1
     
     @State private var word = "" //
+    @State private var frequentWord = false
     
     @State private var colorIndex = 2
     let colorChoices = ["Blue", "Green", "Yellow"]
@@ -91,6 +92,11 @@ struct AddTile: View {
                 }
                 .pickerStyle(WheelPickerStyle())
                 .frame(minWidth: 300, maxWidth: 500, alignment: .center)
+            }
+            Section(header: Text("Frequency")) {
+                Toggle(isOn: $frequentWord) {
+                    Text("Place in frequent words")
+                }
             }
         }
         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -180,6 +186,7 @@ struct AddTile: View {
         // ❎ Dress up the new Album entity
         newTile.word = word
         newTile.color = colorStorage[colorIndex]
+        newTile.frequency = frequentWord
         
         /*
          ======================================================

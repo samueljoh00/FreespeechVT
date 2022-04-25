@@ -76,37 +76,39 @@ struct SpeechGrid: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 3) {
                     ForEach(allTiles, id: \.self) { word in
-                        Button(action: {
-                            if (word.audio?.voiceRecording != nil) {
-                                sentence = sentence + " " + (word.word ?? "");
-                                // play word audios
-                                self.audioPlayer.createAudioPlayer(audioData: (word.audio?.voiceRecording)!)
-                                self.audioPlayer.startAudioPlayer()
-                            }
-                            else {
-                                sentence = sentence + " " + (word.word ?? "");
-                                self.synthesizer.speak(AVSpeechUtterance(string: word.word ?? ""))
-                            }
-                        }) {
-                            VStack {
-                                getImageFromBinaryData(binaryData: word.photo?.tilePhoto, defaultFilename: "ImageUnavailable")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                                Text(word.word ?? "")
-                                    .foregroundColor(Color.black)
+                        if (!word.frequency) {
+                            Button(action: {
+                                if (word.audio?.voiceRecording != nil) {
+                                    sentence = sentence + " " + (word.word ?? "");
+                                    // play word audios
+                                    self.audioPlayer.createAudioPlayer(audioData: (word.audio?.voiceRecording)!)
+                                    self.audioPlayer.startAudioPlayer()
                                 }
-                                .background(Rectangle()
-                                    .frame(width: 100, height: 100)
-                                    .opacity(0.3)
-                                                .foregroundColor(Color(word.color ?? UIColor.blue)))
-                        }
-                        .padding(.vertical, 25)
-                        .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
-                            self.isEdit = true
-                            print(word)
-                        }))
-                        .sheet(isPresented: self.$isEdit) {
-                            EditTile(currTile: word)
+                                else {
+                                    sentence = sentence + " " + (word.word ?? "");
+                                    self.synthesizer.speak(AVSpeechUtterance(string: word.word ?? ""))
+                                }
+                            }) {
+                                VStack {
+                                    getImageFromBinaryData(binaryData: word.photo?.tilePhoto, defaultFilename: "ImageUnavailable")
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                    Text(word.word ?? "")
+                                        .foregroundColor(Color.black)
+                                    }
+                                    .background(Rectangle()
+                                        .frame(width: 100, height: 100)
+                                        .opacity(0.3)
+                                                    .foregroundColor(Color(word.color ?? UIColor.blue)))
+                            }
+                            .padding(.vertical, 25)
+                            .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
+                                self.isEdit = true
+                                print(word)
+                            }))
+                            .sheet(isPresented: self.$isEdit) {
+                                EditTile(currTile: word)
+                            }
                         }
                     }
                 }
@@ -117,32 +119,33 @@ struct SpeechGrid: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(allTiles, id: \.self) { word in
-                        Button(action: {
-                            if (word.audio?.voiceRecording != nil) {
-                                sentence = sentence + " " + (word.word ?? "");
-                                // play word audios
-                                self.audioPlayer.createAudioPlayer(audioData: (word.audio?.voiceRecording)!)
-                                self.audioPlayer.startAudioPlayer()
-                            }
-                            else {
-                                sentence = sentence + " " + (word.word ?? "");
-                                self.synthesizer.speak(AVSpeechUtterance(string: word.word ?? ""))
-                            }
-                        }) {
-                            VStack {
-                                getImageFromBinaryData(binaryData: word.photo?.tilePhoto, defaultFilename: "ImageUnavailable")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                                Text(word.word ?? "")
-                                    .foregroundColor(Color.black)
+                        if (word.frequency) {
+                            Button(action: {
+                                if (word.audio?.voiceRecording != nil) {
+                                    sentence = sentence + " " + (word.word ?? "");
+                                    // play word audios
+                                    self.audioPlayer.createAudioPlayer(audioData: (word.audio?.voiceRecording)!)
+                                    self.audioPlayer.startAudioPlayer()
                                 }
-                                .background(Rectangle()
-                                    .frame(width: 100, height: 100)
-                                    .opacity(0.3)
-                                    .foregroundColor(Color.red))
-                                .padding(.vertical, 25)
-                                .padding(.horizontal, 50)
-    //                        .foregroundColor(userData.wordsList[m] == self.searchItem ? .red : .black)
+                                else {
+                                    sentence = sentence + " " + (word.word ?? "");
+                                    self.synthesizer.speak(AVSpeechUtterance(string: word.word ?? ""))
+                                }
+                            }) {
+                                VStack {
+                                    getImageFromBinaryData(binaryData: word.photo?.tilePhoto, defaultFilename: "ImageUnavailable")
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                    Text(word.word ?? "")
+                                        .foregroundColor(Color.black)
+                                    }
+                                    .background(Rectangle()
+                                        .frame(width: 100, height: 100)
+                                        .opacity(0.3)
+                                        .foregroundColor(Color(word.color ?? UIColor.blue)))
+                                    .padding(.vertical, 25)
+                                    .padding(.horizontal, 50)
+                            }
                         }
                     }
                 } // end of overall hstack

@@ -14,6 +14,7 @@ public class Tile: NSManagedObject, Identifiable {
     
     @NSManaged public var word: String?
     @NSManaged public var color: UIColor?
+    @NSManaged public var frequency: Bool
     @NSManaged public var photo: Photo?
     @NSManaged public var audio: Audio?
 }
