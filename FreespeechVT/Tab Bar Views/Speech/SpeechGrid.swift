@@ -23,6 +23,7 @@ struct SpeechGrid: View {
     let columns = [ GridItem(.adaptive(minimum: 100), spacing: 20) ]
     
     @State private var sentence = ""
+    @State private var isEdit = false
     @EnvironmentObject var audioPlayer: AudioPlayer
     
     // Create an utterance.
@@ -100,6 +101,13 @@ struct SpeechGrid: View {
                                                 .foregroundColor(Color(word.color ?? UIColor.blue)))
                         }
                         .padding(.vertical, 25)
+                        .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
+                            self.isEdit = true
+                            print(word)
+                        }))
+                        .sheet(isPresented: self.$isEdit) {
+                            EditTile(currTile: word)
+                        }
                     }
                 }
             }

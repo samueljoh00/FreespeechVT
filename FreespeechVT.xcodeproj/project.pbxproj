@@ -18,6 +18,7 @@
 		0CDE0D0D27C53A4000229191 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE0D0C27C53A4000229191 /* AppDelegate.swift */; };
 		72920FF6280D544100C0B0E5 /* VoiceRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72920FF5280D544100C0B0E5 /* VoiceRecording.swift */; };
 		72920FF8280D557700C0B0E5 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72920FF7280D557700C0B0E5 /* AudioPlayer.swift */; };
+		72AE5403281693CB0058DA93 /* EditTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AE5402281693CB0058DA93 /* EditTile.swift */; };
 		C5A8EDB427BC9B79006CA34D /* FreespeechVTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8EDB327BC9B79006CA34D /* FreespeechVTApp.swift */; };
 		C5A8EDB627BC9B79006CA34D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8EDB527BC9B79006CA34D /* ContentView.swift */; };
 		C5A8EDB827BC9B7B006CA34D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A8EDB727BC9B7B006CA34D /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		0CDE0D0C27C53A4000229191 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72920FF5280D544100C0B0E5 /* VoiceRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecording.swift; sourceTree = "<group>"; };
 		72920FF7280D557700C0B0E5 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		72AE5402281693CB0058DA93 /* EditTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTile.swift; sourceTree = "<group>"; };
 		C5A8EDB027BC9B79006CA34D /* FreespeechVT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreespeechVT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A8EDB327BC9B79006CA34D /* FreespeechVTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreespeechVTApp.swift; sourceTree = "<group>"; };
 		C5A8EDB527BC9B79006CA34D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			children = (
 				0C1E9D8527D9185100F60280 /* Settings.swift */,
 				0C1E9D8727D91C0900F60280 /* AddTile.swift */,
+				72AE5402281693CB0058DA93 /* EditTile.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72AE5403281693CB0058DA93 /* EditTile.swift in Sources */,
 				0CDE0D0A27C5376400229191 /* Photo.swift in Sources */,
 				C5FA8CA127C5DFD1008D66D2 /* WordsData.swift in Sources */,
 				C5A8EDBD27BC9B7B006CA34D /* Persistence.swift in Sources */,
