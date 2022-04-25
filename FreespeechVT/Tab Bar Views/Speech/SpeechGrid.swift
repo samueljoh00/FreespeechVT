@@ -97,7 +97,7 @@ struct SpeechGrid: View {
                                 .background(Rectangle()
                                     .frame(width: 100, height: 100)
                                     .opacity(0.3)
-                                    .foregroundColor(Color.blue))
+                                                .foregroundColor(Color(word.color ?? UIColor.blue)))
                         }
                         .padding(.vertical, 25)
                     }

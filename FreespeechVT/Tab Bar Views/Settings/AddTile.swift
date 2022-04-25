@@ -30,6 +30,10 @@ struct AddTile: View {
     
     @State private var word = "" //
     
+    @State private var colorIndex = 2
+    let colorChoices = ["Blue", "Green", "Yellow"]
+    let colorStorage = [UIColor.blue, UIColor.green, UIColor.yellow]
+    
     var body: some View {
         Form {
             Section(header: Text("Word")) {
@@ -78,6 +82,15 @@ struct AddTile: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100.0, height: 100.0)
                 Spacer()
+            }
+            Section(header: Text("Tile Color")) {
+                Picker("", selection: $colorIndex) {
+                    ForEach(0 ..< colorChoices.count, id: \.self) {
+                        Text(colorChoices[$0])
+                    }
+                }
+                .pickerStyle(WheelPickerStyle())
+                .frame(minWidth: 300, maxWidth: 500, alignment: .center)
             }
         }
         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -166,6 +179,7 @@ struct AddTile: View {
         
         // ❎ Dress up the new Album entity
         newTile.word = word
+        newTile.color = colorStorage[colorIndex]
         
         /*
          ======================================================
