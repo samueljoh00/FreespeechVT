@@ -110,7 +110,16 @@ struct SpeechGrid: View {
                 HStack {
                     ForEach(allTiles, id: \.self) { word in
                         Button(action: {
-                            sentence = sentence + " " + (word.word ?? "")
+                            if (word.audio?.voiceRecording != nil) {
+                                sentence = sentence + " " + (word.word ?? "");
+                                // play word audios
+                                self.audioPlayer.createAudioPlayer(audioData: (word.audio?.voiceRecording)!)
+                                self.audioPlayer.startAudioPlayer()
+                            }
+                            else {
+                                sentence = sentence + " " + (word.word ?? "");
+                                self.synthesizer.speak(AVSpeechUtterance(string: word.word ?? ""))
+                            }
                         }) {
                             VStack {
                                 getImageFromBinaryData(binaryData: word.photo?.tilePhoto, defaultFilename: "ImageUnavailable")
