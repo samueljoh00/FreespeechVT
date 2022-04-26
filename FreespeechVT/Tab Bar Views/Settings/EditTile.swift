@@ -15,8 +15,9 @@ struct EditTile: View {
     let currTile: Tile
     
     @Environment(\.presentationMode) var presentationMode
-    
     @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(fetchRequest: Tile.allTilesFetchRequest()) var allTiles: FetchedResults<Tile>
+
     
     @State private var showTileEditedAlert = false
     @State private var showInputDataMissingAlert = false
@@ -28,10 +29,14 @@ struct EditTile: View {
     @State private var photoImageData: Data? = nil
     @State private var photoTakeOrPickIndex = 1
     
+    @State private var frequentWord = false
+    
     @State private var word = ""
     @State private var colorIndex = 2
     let colorChoices = ["Blue", "Green", "Yellow"]
     let colorStorage = [UIColor.blue, UIColor.green, UIColor.yellow]
+    
+    @State private var showTileDeleted = false
     
     var body: some View {
         NavigationView {
@@ -84,7 +89,6 @@ struct EditTile: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 100.0, height: 100.0)
-                    Spacer()
                 }
                 Section(header: Text("Tile Color")) {
                     Picker("", selection: $colorIndex) {
@@ -95,23 +99,37 @@ struct EditTile: View {
                     .pickerStyle(WheelPickerStyle())
                     .frame(minWidth: 300, maxWidth: 500, alignment: .center)
                     .onAppear {
-                        self.colorIndex = colorStorage.firstIndex(where: {$0 == currTile.color})!
+                        self.colorIndex = colorStorage.firstIndex(where: {$0 == currTile.color ?? UIColor.blue})!
                         self.currTile.color = colorStorage[colorIndex]
+                    }
+                }
+                Section(header: Text("Frequency")) {
+                    Toggle(isOn: $frequentWord) {
+                        Text("Place in frequent words")
                     }
                 }
             }
             .navigationBarTitle(Text("Edit Tile"), displayMode: .inline)
-            .navigationBarItems(trailing:
-                Button(action: {
-                    if inputDataValidated() {
-                        saveTile()
-                        showTileEditedAlert = true
-                    } else {
-                        showInputDataMissingAlert = true
-                    }
-                }) {
-                    Text("Save")
-                })
+            .navigationBarItems(
+                leading:
+                    Button(action: {
+//                        showTileDeleted = true
+                        managedObjectContext.delete(currTile)
+                    }) {
+                        Text("Delete")
+                    },
+                trailing:
+                    Button(action: {
+                        if inputDataValidated() {
+                            saveTile()
+                            showTileEditedAlert = true
+                        } else {
+                            showInputDataMissingAlert = true
+                        }
+                    }) {
+                        Text("Save")
+                    })
+            .alert(isPresented: $showTileDeleted, content: { tileDeleted })
         }
         .textFieldStyle(RoundedBorderTextFieldStyle())
         .autocapitalization(.words)
@@ -187,6 +205,7 @@ struct EditTile: View {
         // ❎ Dress up the new Album entity
         newTile.word = word
         newTile.color = colorStorage[colorIndex]
+        newTile.frequency = frequentWord
         
         /*
          ======================================================
@@ -317,4 +336,14 @@ struct EditTile: View {
             finishRecording()
         }
     }
+    
+    var tileDeleted: Alert {
+        Alert(title: Text("Tile Added!"),
+              message: Text("New tile is added to your tile grid!"),
+              dismissButton: .default(Text("OK")) {
+                  // Dismiss this View and go back
+                  presentationMode.wrappedValue.dismiss()
+            })
+    }
+    
 }

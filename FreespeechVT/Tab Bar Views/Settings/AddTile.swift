@@ -70,7 +70,7 @@ struct AddTile: View {
                     }
                 }   // End of VStack
             }
-            Section(header: Text("Take Notes by Recording Your Voice")) {
+            Section(header: Text("Tile Recording")) {
                 Button(action: {
                     self.voiceRecordingMicrophoneTapped()
                 }) {
@@ -82,7 +82,6 @@ struct AddTile: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100.0, height: 100.0)
-                Spacer()
             }
             Section(header: Text("Tile Color")) {
                 Picker("", selection: $colorIndex) {

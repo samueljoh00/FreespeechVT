@@ -36,6 +36,7 @@ struct SpeechGrid: View {
         let utterance = AVSpeechUtterance(string: sentence)
             self.synthesizer.speak(utterance)
         }
+    
 
     var body: some View {
         VStack {
@@ -78,6 +79,7 @@ struct SpeechGrid: View {
                     ForEach(allTiles, id: \.self) { word in
                         if (!word.frequency) {
                             Button(action: {
+//                                let thisWord = word
                                 if (word.audio?.voiceRecording != nil) {
                                     sentence = sentence + " " + (word.word ?? "");
                                     // play word audios
@@ -88,27 +90,29 @@ struct SpeechGrid: View {
                                     sentence = sentence + " " + (word.word ?? "");
                                     self.synthesizer.speak(AVSpeechUtterance(string: word.word ?? ""))
                                 }
-                            }) {
+                            })
+                            {
                                 VStack {
                                     getImageFromBinaryData(binaryData: word.photo?.tilePhoto, defaultFilename: "ImageUnavailable")
                                         .resizable()
                                         .frame(width: 50, height: 50)
                                     Text(word.word ?? "")
                                         .foregroundColor(Color.black)
-                                    }
+                                        }
                                     .background(Rectangle()
                                         .frame(width: 100, height: 100)
                                         .opacity(0.3)
-                                                    .foregroundColor(Color(word.color ?? UIColor.blue)))
+                                        .foregroundColor(Color(word.color ?? UIColor.blue))
+                                        )
+                                    .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
+                                        self.isEdit = true
+                                    }))
+                                    .sheet(isPresented: self.$isEdit) {
+                                        EditTile(currTile: word)
+                                    }
                             }
                             .padding(.vertical, 25)
-                            .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
-                                self.isEdit = true
-                                print(word)
-                            }))
-                            .sheet(isPresented: self.$isEdit) {
-                                EditTile(currTile: word)
-                            }
+
                         }
                     }
                 }
@@ -155,6 +159,26 @@ struct SpeechGrid: View {
 //                RoundedRectangle(cornerRadius: 16)
 //                    .stroke(Color.gray, lineWidth: 4)
 //            )
+        }
+    }
+    
+    /*
+     ------------------------------
+     MARK: - Delete Selected Recipe
+     ------------------------------
+     */
+    func delete(at offsets: IndexSet) {
+        
+        let tileToDelete = allTiles[offsets.first!]
+        
+        // ❎ CoreData Delete operation
+        managedObjectContext.delete(tileToDelete)
+        
+        // ❎ CoreData Save operation
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Unable to delete selected tile!")
         }
     }
 }
