@@ -1,6 +1,6 @@
 //
-//  AddTile.swift
-//  AddTile
+//  EditTile.swift
+//  EditTile
 //
 //  Created by Andy Cho on 3/9/22.
 //  Copyright © 2022 FreespeechVT. All rights reserved.
@@ -12,18 +12,15 @@ import AVFoundation
 
 struct EditTile: View {
     
-    let currTile: Tile
-    
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(fetchRequest: Tile.allTilesFetchRequest()) var allTiles: FetchedResults<Tile>
-
+    
+    let currTile: Tile
     
     @State private var showTileEditedAlert = false
     @State private var showInputDataMissingAlert = false
-    
     @State private var recordingVoice = false
-    
     var photoTakeOrPickChoices = ["Camera", "Photo Library"]
     @State private var showImagePicker = false
     @State private var photoImageData: Data? = nil
@@ -85,10 +82,17 @@ struct EditTile: View {
                     }
                 }
                 Section(header: Text("Tile Photo")) {
-                    photoImage
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100.0, height: 100.0)
+                    if (currTile.photo?.tilePhoto != nil) {
+                        getImageFromBinaryData(binaryData: currTile.photo?.tilePhoto, defaultFilename: "ImageUnavailable")                        .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 100.0, height: 100.0)
+                    }
+                    else {
+                        Image("ImageUnavailable")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 100.0, height: 100.0)
+                    }
                 }
                 Section(header: Text("Tile Color")) {
                     Picker("", selection: $colorIndex) {
@@ -103,9 +107,9 @@ struct EditTile: View {
                         self.currTile.color = colorStorage[colorIndex]
                     }
                 }
-                Section(header: Text("Frequency")) {
+                Section(header: Text("Word Dock")) {
                     Toggle(isOn: $frequentWord) {
-                        Text("Place in frequent words")
+                        Text("Place tile into the word dock")
                     }
                 }
             }
@@ -113,7 +117,7 @@ struct EditTile: View {
             .navigationBarItems(
                 leading:
                     Button(action: {
-//                        showTileDeleted = true
+                        showTileDeleted = true
                         managedObjectContext.delete(currTile)
                     }) {
                         Text("Delete")
@@ -146,16 +150,6 @@ struct EditTile: View {
             PhotoCaptureView(showImagePicker: $showImagePicker,
                              photoImageData: $photoImageData,
                              cameraOrLibrary: photoTakeOrPickChoices[photoTakeOrPickIndex])
-        }
-    }
-    
-    var photoImage: Image {
-        if photoImageData == nil {
-            // The public function is given in UtilityFunctions.swift
-            let imageView = getImageFromBinaryData(binaryData: currTile.photo?.tilePhoto, defaultFilename: "ImageUnavailable")
-            return imageView
-        } else {
-            return Image("ImageUnavailable")
         }
     }
     
@@ -338,8 +332,8 @@ struct EditTile: View {
     }
     
     var tileDeleted: Alert {
-        Alert(title: Text("Tile Added!"),
-              message: Text("New tile is added to your tile grid!"),
+        Alert(title: Text("Tile Deleted!"),
+              message: Text("The tile was deleted from the grid."),
               dismissButton: .default(Text("OK")) {
                   // Dismiss this View and go back
                   presentationMode.wrappedValue.dismiss()

@@ -34,7 +34,12 @@ struct Settings: View {
                         }
                     }
                 }
-            }   // End of Form
+                // Delete all tiles
+                Section(header: Text("")) {
+                    
+                }
+            }   // End of Form {
+            
             // Set font and size for the whole Form content
             .font(.system(size: 14))
             .navigationBarTitle(Text("Settings"), displayMode: .inline)

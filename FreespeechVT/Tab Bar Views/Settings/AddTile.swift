@@ -92,9 +92,9 @@ struct AddTile: View {
                 .pickerStyle(WheelPickerStyle())
                 .frame(minWidth: 300, maxWidth: 500, alignment: .center)
             }
-            Section(header: Text("Frequency")) {
+            Section(header: Text("Word Dock")) {
                 Toggle(isOn: $frequentWord) {
-                    Text("Place in frequent words")
+                    Text("Place tile into the word dock")
                 }
             }
         }

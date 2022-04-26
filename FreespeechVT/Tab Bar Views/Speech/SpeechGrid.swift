@@ -160,30 +160,6 @@ struct SpeechGrid: View {
                 } // end of overall hstack
             } // end of scrollview
             .padding(.vertical, 20)
-//            .overlay(
-//                RoundedRectangle(cornerRadius: 16)
-//                    .stroke(Color.gray, lineWidth: 4)
-//            )
-        }
-    }
-    
-    /*
-     ------------------------------
-     MARK: - Delete Selected Recipe
-     ------------------------------
-     */
-    func delete(at offsets: IndexSet) {
-        
-        let tileToDelete = allTiles[offsets.first!]
-        
-        // ❎ CoreData Delete operation
-        managedObjectContext.delete(tileToDelete)
-        
-        // ❎ CoreData Save operation
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print("Unable to delete selected tile!")
         }
     }
 }
