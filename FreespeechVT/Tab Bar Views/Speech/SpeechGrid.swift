@@ -104,15 +104,14 @@ struct SpeechGrid: View {
                                         .opacity(0.3)
                                         .foregroundColor(Color(word.color ?? UIColor.blue))
                                         )
-                                    .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
-                                        self.isEdit = true
-                                    }))
-                                    .sheet(isPresented: self.$isEdit) {
-                                        EditTile(currTile: word)
-                                    }
                             }
                             .padding(.vertical, 25)
-
+                            .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
+                                self.isEdit = true
+                            }))
+                            .sheet(isPresented: self.$isEdit) {
+                                EditTile(currTile: word)
+                            }
                         }
                     }
                 }
@@ -122,33 +121,39 @@ struct SpeechGrid: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(allTiles, id: \.self) { word in
-                        if (word.frequency) {
+                    ForEach(allTiles, id: \.self) { frequent in
+                        if (frequent.frequency) {
                             Button(action: {
-                                if (word.audio?.voiceRecording != nil) {
-                                    sentence = sentence + " " + (word.word ?? "");
+                                if (frequent.audio?.voiceRecording != nil) {
+                                    sentence = sentence + " " + (frequent.word ?? "");
                                     // play word audios
-                                    self.audioPlayer.createAudioPlayer(audioData: (word.audio?.voiceRecording)!)
+                                    self.audioPlayer.createAudioPlayer(audioData: (frequent.audio?.voiceRecording)!)
                                     self.audioPlayer.startAudioPlayer()
                                 }
                                 else {
-                                    sentence = sentence + " " + (word.word ?? "");
-                                    self.synthesizer.speak(AVSpeechUtterance(string: word.word ?? ""))
+                                    sentence = sentence + " " + (frequent.word ?? "");
+                                    self.synthesizer.speak(AVSpeechUtterance(string: frequent.word ?? ""))
                                 }
                             }) {
                                 VStack {
-                                    getImageFromBinaryData(binaryData: word.photo?.tilePhoto, defaultFilename: "ImageUnavailable")
+                                    getImageFromBinaryData(binaryData: frequent.photo?.tilePhoto, defaultFilename: "ImageUnavailable")
                                         .resizable()
                                         .frame(width: 50, height: 50)
-                                    Text(word.word ?? "")
+                                    Text(frequent.word ?? "")
                                         .foregroundColor(Color.black)
                                     }
                                     .background(Rectangle()
                                         .frame(width: 100, height: 100)
                                         .opacity(0.3)
-                                        .foregroundColor(Color(word.color ?? UIColor.blue)))
+                                        .foregroundColor(Color(frequent.color ?? UIColor.blue)))
                                     .padding(.vertical, 25)
                                     .padding(.horizontal, 50)
+                            }
+                            .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
+                                self.isEdit = true
+                            }))
+                            .sheet(isPresented: self.$isEdit) {
+                                EditTile(currTile: frequent)
                             }
                         }
                     }
