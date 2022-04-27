@@ -111,6 +111,7 @@ struct EditTile: View {
                         Text("Place tile into the word dock")
                     }
                 }
+                .alert(isPresented: $showTileDeleted, content: { tileDeleted })
             }
             .navigationBarTitle(Text("Edit Tile"), displayMode: .inline)
             .navigationBarItems(
@@ -137,9 +138,9 @@ struct EditTile: View {
             .autocapitalization(.words)
             .disableAutocorrection(true)
             .font(.system(size: 14))
+            .alert(isPresented: $showTileDeleted, content: { tileDeleted })
             .alert(isPresented: $showInputDataMissingAlert, content: { inputDataMissingAlert })
             .alert(isPresented: $showTileEditedAlert, content: { tileEditedAlert })
-            .alert(isPresented: $showTileDeleted, content: { tileDeleted })
             .sheet(isPresented: $showImagePicker) {
                 /*
                  🔴 We pass $showImagePicker and $photoImageData with $ sign into PhotoCaptureView

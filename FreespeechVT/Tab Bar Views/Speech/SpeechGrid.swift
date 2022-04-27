@@ -106,12 +106,12 @@ struct SpeechGrid: View {
                                         )
                             }
                             .padding(.vertical, 25)
-                            .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
-                                self.isEdit = true
-                            }))
-                            .sheet(isPresented: self.$isEdit) {
-                                EditTile(currTile: word)
-                            }
+//                            .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
+//                                self.isEdit = true
+//                            }))
+//                            .sheet(isPresented: self.$isEdit) {
+//                                EditTile(currTile: word)
+//                            }
                         }
                     }
                 }
@@ -149,9 +149,9 @@ struct SpeechGrid: View {
                                     .padding(.vertical, 25)
                                     .padding(.horizontal, 50)
                             }
-                            .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
-                                self.isEdit = true
-                            }))
+//                            .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
+//                                self.isEdit = true
+//                            }))
 //                            .sheet(isPresented: self.$isEdit) {
 //                                EditTile(currTile: frequent)
 //                            }
