@@ -152,9 +152,9 @@ struct SpeechGrid: View {
                             .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
                                 self.isEdit = true
                             }))
-                            .sheet(isPresented: self.$isEdit) {
-                                EditTile(currTile: frequent)
-                            }
+//                            .sheet(isPresented: self.$isEdit) {
+//                                EditTile(currTile: frequent)
+//                            }
                         }
                     }
                 } // end of overall hstack

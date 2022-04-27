@@ -12,6 +12,11 @@
 		0C1E9D8C27D920D800F60280 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E9D8A27D920D800F60280 /* ImagePicker.swift */; };
 		0C1E9D8D27D920D800F60280 /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E9D8B27D920D800F60280 /* PhotoCaptureView.swift */; };
 		0C2075D4281832AF00BBCC53 /* EditTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2075D3281832AF00BBCC53 /* EditTile.swift */; };
+		0C2075D72818DEE000BBCC53 /* SelectEditTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2075D62818DEE000BBCC53 /* SelectEditTile.swift */; };
+		0C2075D92818EA2600BBCC53 /* ChangeSpeechGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2075D82818EA2600BBCC53 /* ChangeSpeechGrid.swift */; };
+		0C2075DB2818F2A700BBCC53 /* ChangeWordDock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2075DA2818F2A700BBCC53 /* ChangeWordDock.swift */; };
+		0C2075DD2818F3B200BBCC53 /* TileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2075DC2818F3B200BBCC53 /* TileItem.swift */; };
+		0C2075DF2818F77800BBCC53 /* NavigationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2075DE2818F77800BBCC53 /* NavigationStyle.swift */; };
 		0C9BCE0027C2C96D0027A437 /* References.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9BCDFF27C2C96D0027A437 /* References.swift */; };
 		0C9BCE0327C2E6C40027A437 /* SpeechGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9BCE0227C2E6C40027A437 /* SpeechGrid.swift */; };
 		0CDE0D0827C5375700229191 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE0D0727C5375700229191 /* Tile.swift */; };
@@ -37,6 +42,11 @@
 		0C1E9D8A27D920D800F60280 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0C1E9D8B27D920D800F60280 /* PhotoCaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
 		0C2075D3281832AF00BBCC53 /* EditTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTile.swift; sourceTree = "<group>"; };
+		0C2075D62818DEE000BBCC53 /* SelectEditTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEditTile.swift; sourceTree = "<group>"; };
+		0C2075D82818EA2600BBCC53 /* ChangeSpeechGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSpeechGrid.swift; sourceTree = "<group>"; };
+		0C2075DA2818F2A700BBCC53 /* ChangeWordDock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWordDock.swift; sourceTree = "<group>"; };
+		0C2075DC2818F3B200BBCC53 /* TileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileItem.swift; sourceTree = "<group>"; };
+		0C2075DE2818F77800BBCC53 /* NavigationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStyle.swift; sourceTree = "<group>"; };
 		0C9BCDFF27C2C96D0027A437 /* References.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = References.swift; sourceTree = "<group>"; };
 		0C9BCE0227C2E6C40027A437 /* SpeechGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechGrid.swift; sourceTree = "<group>"; };
 		0CDE0D0727C5375700229191 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
@@ -74,7 +84,11 @@
 			children = (
 				0C1E9D8527D9185100F60280 /* Settings.swift */,
 				0C1E9D8727D91C0900F60280 /* AddTile.swift */,
+				0C2075D62818DEE000BBCC53 /* SelectEditTile.swift */,
+				0C2075D82818EA2600BBCC53 /* ChangeSpeechGrid.swift */,
+				0C2075DA2818F2A700BBCC53 /* ChangeWordDock.swift */,
 				0C2075D3281832AF00BBCC53 /* EditTile.swift */,
+				0C2075DC2818F3B200BBCC53 /* TileItem.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -120,6 +134,7 @@
 				C5FA8CA427C5E0C0008D66D2 /* UtilityFunctions.swift */,
 				72920FF5280D544100C0B0E5 /* VoiceRecording.swift */,
 				72920FF7280D557700C0B0E5 /* AudioPlayer.swift */,
+				0C2075DE2818F77800BBCC53 /* NavigationStyle.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -260,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C2075D4281832AF00BBCC53 /* EditTile.swift in Sources */,
+				0C2075DF2818F77800BBCC53 /* NavigationStyle.swift in Sources */,
 				0CDE0D0A27C5376400229191 /* Photo.swift in Sources */,
 				C5FA8CA127C5DFD1008D66D2 /* WordsData.swift in Sources */,
 				C5A8EDBD27BC9B7B006CA34D /* Persistence.swift in Sources */,
@@ -269,15 +285,19 @@
 				0CDE0D0D27C53A4000229191 /* AppDelegate.swift in Sources */,
 				0C9BCE0027C2C96D0027A437 /* References.swift in Sources */,
 				72920FF6280D544100C0B0E5 /* VoiceRecording.swift in Sources */,
+				0C2075D92818EA2600BBCC53 /* ChangeSpeechGrid.swift in Sources */,
 				0CDE0D0827C5375700229191 /* Tile.swift in Sources */,
+				0C2075DB2818F2A700BBCC53 /* ChangeWordDock.swift in Sources */,
 				C5A8EDB627BC9B79006CA34D /* ContentView.swift in Sources */,
 				72920FF8280D557700C0B0E5 /* AudioPlayer.swift in Sources */,
+				0C2075DD2818F3B200BBCC53 /* TileItem.swift in Sources */,
 				C5FA8CA327C5DFE7008D66D2 /* WordStruct.swift in Sources */,
 				C5A8EDB427BC9B79006CA34D /* FreespeechVTApp.swift in Sources */,
 				0C1E9D8D27D920D800F60280 /* PhotoCaptureView.swift in Sources */,
 				C5FA8CA527C5E0C0008D66D2 /* UtilityFunctions.swift in Sources */,
 				0C1E9D8C27D920D800F60280 /* ImagePicker.swift in Sources */,
 				0C9BCE0327C2E6C40027A437 /* SpeechGrid.swift in Sources */,
+				0C2075D72818DEE000BBCC53 /* SelectEditTile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

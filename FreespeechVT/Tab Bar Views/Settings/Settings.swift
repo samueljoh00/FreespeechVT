@@ -26,11 +26,22 @@ struct Settings: View {
                 Section(header: Text("")) {
                     NavigationLink(destination: AddTile()) {
                         HStack {
-                            Image(systemName: "pencil.circle")
+                            Image(systemName: "square.and.pencil")
                                 .imageScale(.medium)
                                 .font(Font.title.weight(.light))
                                 .foregroundColor(.blue)
                             Text("Add Tile")
+                        }
+                    }
+                }
+                Section(header: Text("Change Tiles")) {
+                    NavigationLink(destination: SelectEditTile()) {
+                        HStack {
+                            Image(systemName: "pencil.circle")
+                                .imageScale(.medium)
+                                .font(Font.title.weight(.light))
+                                .foregroundColor(.blue)
+                            Text("Edit Tiles")
                         }
                     }
                 }
@@ -46,7 +57,6 @@ struct Settings: View {
             
         }   // End of NavigationView
         .navigationViewStyle(StackNavigationViewStyle())
-        
     }   // End of var
 }
 

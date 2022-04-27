@@ -135,6 +135,7 @@ struct EditTile: View {
                     })
             .alert(isPresented: $showTileDeleted, content: { tileDeleted })
         }
+        .customNavigationViewStyle()
         .textFieldStyle(RoundedBorderTextFieldStyle())
         .autocapitalization(.words)
         .disableAutocorrection(true)
