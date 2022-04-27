@@ -36,7 +36,6 @@ struct EditTile: View {
     @State private var showTileDeleted = false
     
     var body: some View {
-        NavigationView {
             Form {
                 Section(header: Text("Word")) {
                     HStack {
@@ -133,25 +132,24 @@ struct EditTile: View {
                     }) {
                         Text("Save")
                     })
+            .customNavigationViewStyle()
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .autocapitalization(.words)
+            .disableAutocorrection(true)
+            .font(.system(size: 14))
+            .alert(isPresented: $showInputDataMissingAlert, content: { inputDataMissingAlert })
+            .alert(isPresented: $showTileEditedAlert, content: { tileEditedAlert })
             .alert(isPresented: $showTileDeleted, content: { tileDeleted })
-        }
-        .customNavigationViewStyle()
-        .textFieldStyle(RoundedBorderTextFieldStyle())
-        .autocapitalization(.words)
-        .disableAutocorrection(true)
-        .font(.system(size: 14))
-        .alert(isPresented: $showInputDataMissingAlert, content: { inputDataMissingAlert })
-        .alert(isPresented: $showTileEditedAlert, content: { tileEditedAlert })
-        .sheet(isPresented: $showImagePicker) {
-            /*
-             🔴 We pass $showImagePicker and $photoImageData with $ sign into PhotoCaptureView
-             so that PhotoCaptureView can change them. The @Binding keywork in PhotoCaptureView
-             indicates that the input parameter is passed by reference and is changeable (mutable).
-             */
-            PhotoCaptureView(showImagePicker: $showImagePicker,
-                             photoImageData: $photoImageData,
-                             cameraOrLibrary: photoTakeOrPickChoices[photoTakeOrPickIndex])
-        }
+            .sheet(isPresented: $showImagePicker) {
+                /*
+                 🔴 We pass $showImagePicker and $photoImageData with $ sign into PhotoCaptureView
+                 so that PhotoCaptureView can change them. The @Binding keywork in PhotoCaptureView
+                 indicates that the input parameter is passed by reference and is changeable (mutable).
+                 */
+                PhotoCaptureView(showImagePicker: $showImagePicker,
+                                 photoImageData: $photoImageData,
+                                 cameraOrLibrary: photoTakeOrPickChoices[photoTakeOrPickIndex])
+            }
     }
     
     /*
