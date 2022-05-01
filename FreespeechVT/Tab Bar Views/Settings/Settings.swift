@@ -46,9 +46,9 @@ struct Settings: View {
                     }
                 }
                 // Delete all tiles
-                Section(header: Text("")) {
-                    
-                }
+//                Section(header: Text("")) {
+//
+//                }
             }   // End of Form {
             
             // Set font and size for the whole Form content

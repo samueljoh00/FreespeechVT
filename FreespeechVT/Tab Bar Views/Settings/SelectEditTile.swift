@@ -9,7 +9,15 @@
 import Foundation
 import SwiftUI
 
+
 struct SelectEditTile: View {
+    
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(fetchRequest: Tile.allTilesFetchRequest()) var allTiles: FetchedResults<Tile>
+    
+    @State private var delete = false
+    
     var body: some View {
         Form {
             Section(header: Text("Change Speech Grid")) {
@@ -34,6 +42,31 @@ struct SelectEditTile: View {
                     }
                 }
             }
+            Section(header: Text("Delete All Tiles")) {
+                Button(action: deleteSwitch) {
+                    Text("Delete Tiles")
+                        .foregroundColor(Color.red)
+                }
+            }
         }
+        .alert(isPresented: $delete, content: { deleteTiles })
+    }
+    
+    func deleteSwitch() {
+        delete = true
+    }
+    
+    var deleteTiles: Alert {
+        Alert(title: Text("Delete Tiles!"),
+              message: Text("Are you sure you want to delete all tiles?"),
+              primaryButton: .default(Text("Cancel")),
+              secondaryButton: .destructive(Text("Delete")) {
+                  // Dismiss this View and go back
+                for tile in allTiles {
+                    managedObjectContext.delete(tile)
+                }
+                      presentationMode.wrappedValue.dismiss()
+                }
+            )
     }
 }
