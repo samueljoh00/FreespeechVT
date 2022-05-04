@@ -8,13 +8,15 @@
 import Foundation
 import SwiftUI
 import CoreData
+
+/*
+ * Populates tile database and holds struct list for default tiles
+ */
  
 fileprivate var wordsStructList = [Word]()
 
 /*
- ***********************************
- MARK: Create Tiles Database
- ***********************************
+ Create Tiles Database
  */
 public func createTilesDatabse() {
 
@@ -23,28 +25,18 @@ public func createTilesDatabse() {
     populateDatabase()
 }
 
-/*
-*********************************************
-MARK: Populate Database If Not Already Done
-*********************************************
-*/
+
+// Populate the database if not already done
 func populateDatabase() {
     
-    // ❎ Get object reference of CoreData managedObjectContext from the persistent container
     let managedObjectContext = PersistenceController.shared.persistentContainer.viewContext
     
-    //----------------------------
-    // ❎ Define the Fetch Request
-    //----------------------------
     let fetchRequest = NSFetchRequest<Tile>(entityName: "Tile")
     fetchRequest.sortDescriptors = [NSSortDescriptor(key: "word", ascending: true)]
     
     var listOfAllTileEntitiesInDatabase = [Tile]()
     
     do {
-        //-----------------------------
-        // ❎ Execute the Fetch Request
-        //-----------------------------
         listOfAllTileEntitiesInDatabase = try managedObjectContext.fetch(fetchRequest)
     } catch {
         print("Populate Database Failed!")
@@ -52,7 +44,6 @@ func populateDatabase() {
     }
     
     if listOfAllTileEntitiesInDatabase.count > 0 {
-        // Database has already been populated
         print("Database has already been populated!")
         return
     }
@@ -60,61 +51,28 @@ func populateDatabase() {
     print("Database will be populated!")
     
     for aTile in wordsStructList {
-        /*
-         ======================================================
-         Create an instance of the Album Entity and dress it up
-         ======================================================
-        */
-        
-        // ❎ Create an instance of the Album entity in CoreData managedObjectContext
         let tileEntity = Tile(context: managedObjectContext)
         
-        // ❎ Dress it up by specifying its attributes
         tileEntity.word = aTile.name
 
-        /*
-         ======================================================
-         Create an instance of the Photo Entity and dress it up
-         ======================================================
-         */
-        
-        // ❎ Create an instance of the Photo Entity in CoreData managedObjectContext
         let photoEntity = Photo(context: managedObjectContext)
         
-        // Obtain the album cover photo image from Assets.xcassets as UIImage
-        // LOOK HERE FOR THE SETTING OF IMAGE URL
         let photoUIImage = UIImage(named: aTile.imageUrl)
         
-        // Convert photoUIImage to data of type Data (Binary Data) in JPEG format with 100% quality
         let photoData = photoUIImage?.jpegData(compressionQuality: 1.0)
         
-        // Assign photoData to Core Data entity attribute of type Data (Binary Data)
         photoEntity.tilePhoto = photoData!
         
-        /*
-         ==============================
-         Establish Entity Relationships
-         ==============================
-        */
+        tileEntity.photo = photoEntity
+        photoEntity.tile = tileEntity
         
-        // ❎ Establish One-to-One relationship between Contact and Photo
-        tileEntity.photo = photoEntity      // A Contact can have only one photo
-        photoEntity.tile = tileEntity      // A photo can belong to only one album
         
-        /*
-         ==================================
-         Save Changes to Core Data Database
-         ==================================
-        */
-        
-        // ❎ CoreData Save operation
+        // Save into core data
         do {
             try managedObjectContext.save()
         } catch {
             return
         }
-        
-    }   // End of for loop
-
+    }
 }
 

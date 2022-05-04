@@ -6,6 +6,10 @@
 //  Copyright © 2022 FreespeechVT. All rights reserved.
 //
 
+/*
+ * Structure of our tile data
+ */
+
 import Foundation
 import CoreData
 import SwiftUI
@@ -20,10 +24,10 @@ public class Tile: NSManagedObject, Identifiable {
 }
 
 extension Tile {
+    // Fetches all tiles
     static func allTilesFetchRequest() -> NSFetchRequest<Tile> {
         let fetchRequest = NSFetchRequest<Tile>(entityName: "Tile")
         
-        // List the fetched park visits in alphabetical order with respect to park visit full name.
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "word", ascending: true)]
         
         return fetchRequest

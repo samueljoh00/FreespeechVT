@@ -6,6 +6,10 @@
 //  Copyright © 2022 Andy Cho. All rights reserved.
 //
 
+/*
+ * Picker struct to either pick between to take a photo or 
+ */
+
 import SwiftUI
 
 struct PhotoCaptureView: View {

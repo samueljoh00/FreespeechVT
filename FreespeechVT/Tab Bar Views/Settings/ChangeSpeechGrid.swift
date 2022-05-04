@@ -9,11 +9,12 @@
 import Foundation
 import SwiftUI
 
+/* List of speech grid tiles to edit */
+
 struct ChangeSpeechGrid: View {
-    // ❎ CoreData managedObjectContext reference
+
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    // ❎ CoreData FetchRequest returning all music album entities in the database
     @FetchRequest(fetchRequest: Tile.allTilesFetchRequest()) var allTiles: FetchedResults<Tile>
     
     var body: some View {
@@ -25,25 +26,6 @@ struct ChangeSpeechGrid: View {
                     }
                 }
             }
-        }
-    }
-    /*
-     ---------------------------------
-     MARK: Delete Selected Music Album
-     ---------------------------------
-     */
-    func delete(at offsets: IndexSet) {
-        
-        let tileToDelete = allTiles[offsets.first!]
-        
-        // ❎ CoreData Delete operation
-        managedObjectContext.delete(tileToDelete)
-
-        // ❎ CoreData Save operation
-        do {
-          try managedObjectContext.save()
-        } catch {
-          print("Unable to delete selected tile!")
         }
     }
 }

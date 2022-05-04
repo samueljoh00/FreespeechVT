@@ -9,11 +9,11 @@
 import Foundation
 import SwiftUI
 
+/* List of word dock tiles to edit */
+
 struct ChangeWordDock: View {
-    // ❎ CoreData managedObjectContext reference
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    // ❎ CoreData FetchRequest returning all music album entities in the database
     @FetchRequest(fetchRequest: Tile.allTilesFetchRequest()) var allTiles: FetchedResults<Tile>
     
     var body: some View {

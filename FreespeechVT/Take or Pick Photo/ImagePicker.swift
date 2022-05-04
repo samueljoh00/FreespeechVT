@@ -6,30 +6,21 @@
 //  Copyright © 2022 Andy Cho. All rights reserved.
 //
 
+/*
+ *  This class will allow the user to pick through images in photo library
+ */
+
 import Foundation
 import SwiftUI
 
 // Global variable
 var pickedImage = UIImage()
 
-/*
- For storage and performance efficiency reasons, we scale down the
- album cover photo image selected by the user from the photo library
- or taken by camera to a smaller size, which is called a "thumbnail"
- */
+
 let thumbnailImageWidth: CGFloat = 500.0
 let thumbnailImageHeight: CGFloat = 500.0
 
-/*
-******************************
-MARK: Image Picker Coordinator
-******************************
-*/
 class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    /*
-    🔴 imagePickerShown and photoImageData are passed as input parameters.
-    The @Binding keyword indicates that the input parameter is changeable.
-    */
     
     @Binding var imagePickerShown: Bool
     @Binding var photoImageData: Data?
@@ -39,10 +30,6 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
         _photoImageData = photoImageData
     }
     
-    /*
-     UIImagePickerController is a view controller that manages the system interfaces for
-     taking pictures, recording movies, and choosing items from the user's media library.
-     */
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let editedImage = info[.editedImage] as? UIImage {
@@ -53,40 +40,19 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
             photoImageData = nil
             return
         }
-  
-        // Scale the picked image to the thumbnail size for storage and performance efficiency reasons.
-        // The scale() method is given below as an extension of the UIImage class.
-        
+
         let thumbnailImage = pickedImage.scale(toSize: CGSize(width: thumbnailImageWidth, height: thumbnailImageHeight))
         
-        // jpegData returns a data object containing thumbnailImage in JPEG format.
         if let thumbnailData = thumbnailImage.jpegData(compressionQuality: 1.0) {
-            /*
-             🔴 Changing photoImageData value here is reflected in the @State private var photoImageData
-                in AddAlbum and ChangeAlbum because of the @Binding keyword.
-             */
             photoImageData = thumbnailData
         } else {
             photoImageData = nil
         }
-        
-        /*
-        🔴 Changing imagePickerShown value here is reflected in the @State private var showImagePicker
-           in AddAlbum and ChangeAlbum because of the @Binding keyword.
-        */
-        
-        // Since the photo image data is obtained close it
         imagePickerShown = false
             
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        /*
-        🔴 Changing imagePickerShown value here is reflected in the @State private var showImagePicker
-           in AddAlbum and ChangeAlbum because of the @Binding keyword.
-        */
-        
-        // To cancel close it
         imagePickerShown = false
         
         picker.dismiss(animated: true, completion: nil)
@@ -94,11 +60,7 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
     
 }
 
-/*
-***********************************************
-MARK: Image Picker from Camera or Photo Library
-***********************************************
-*/
+// Image picker for photo or photo library
 struct ImagePicker: UIViewControllerRepresentable {
     
     @Binding var imagePickerShown: Bool
@@ -111,8 +73,6 @@ struct ImagePicker: UIViewControllerRepresentable {
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
         
-        // Create a UIImagePickerController object, initialize it,
-        // and store its object reference into imagePickerController
         let imagePickerController = UIImagePickerController()
         
         if cameraOrLibrary == "Camera" {
@@ -124,33 +84,22 @@ struct ImagePicker: UIViewControllerRepresentable {
         imagePickerController.allowsEditing = true
         imagePickerController.mediaTypes = ["public.image"]
         
-        // Designate this view controller as the delegate so that we can implement
-        // the protocol methods in the ImagePickerCoordinator class above
+
         imagePickerController.delegate = context.coordinator
         
         return imagePickerController
     }
     
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
-        // Unused
+
     }
     
 }
 
-/*
- -------------------------------------------
- MARK: Extension Methods to Resize a UIImage
- -------------------------------------------
- */
-
-// Resize a UIImage proportionately without distorting it
+// Resize UIImage
 extension UIImage {
     
     func scale(toSize newSize:CGSize) -> UIImage {
-        /*
-         Make sure that the new size has the correct aspect ratio
-         by calling the CGSize extension method resizeFill() below
-        */
         let aspectFill = size.resizeFill(toSize: newSize)
         
         UIGraphicsBeginImageContextWithOptions(aspectFill, false, 0.0);

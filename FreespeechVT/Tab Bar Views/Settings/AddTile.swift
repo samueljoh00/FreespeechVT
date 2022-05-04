@@ -18,6 +18,7 @@ struct AddTile: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
+    // Private variables to hold our add tile inputs
     @State private var showTileAddedAlert = false
     @State private var showInputDataMissingAlert = false
     
@@ -28,20 +29,20 @@ struct AddTile: View {
     @State private var photoImageData: Data? = nil
     @State private var photoTakeOrPickIndex = 1
     
-    @State private var word = "" //
+    @State private var word = ""
     @State private var frequentWord = false
     
     @State private var colorIndex = 2
     let colorChoices = ["Blue", "Green", "Yellow"]
     let colorStorage = [UIColor.blue, UIColor.green, UIColor.yellow]
     
+    // Section form with textfields and tile data inputs
     var body: some View {
         Form {
             Section(header: Text("Word")) {
                 HStack {
                     TextField("Enter Word", text: $word)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-//                        .frame(width: 500, height: 36)
                     
                     Button(action: {
                         self.word = ""
@@ -118,20 +119,15 @@ struct AddTile: View {
             })
         
         .sheet(isPresented: $showImagePicker) {
-            /*
-             🔴 We pass $showImagePicker and $photoImageData with $ sign into PhotoCaptureView
-             so that PhotoCaptureView can change them. The @Binding keywork in PhotoCaptureView
-             indicates that the input parameter is passed by reference and is changeable (mutable).
-             */
             PhotoCaptureView(showImagePicker: $showImagePicker,
                              photoImageData: $photoImageData,
                              cameraOrLibrary: photoTakeOrPickChoices[photoTakeOrPickIndex])
         }
     }
     
+    // Our photo from pick or take
     var photoImage: Image {
         if let imageData = photoImageData {
-            // The public function is given in UtilityFunctions.swift
             let imageView = getImageFromBinaryData(binaryData: imageData, defaultFilename: "ImageUnavailable")
             return imageView
         } else {
@@ -139,31 +135,23 @@ struct AddTile: View {
         }
     }
     
-    /*
-     --------------------------------
-     MARK: Input Data Missing Alert
-     --------------------------------
-     */
+    // Sends alert that input is missing some data
     var inputDataMissingAlert: Alert {
         Alert(title: Text("Missing Input Data!"),
               message: Text("Missing word input"),
               dismissButton: .default(Text("OK")) )
     }
     
-    /*
-     -----------------------
-     MARK: Tile Added Alert
-     -----------------------
-     */
+    // Sends an alert when tile is added
     var tileAddedAlert: Alert {
         Alert(title: Text("Tile Added!"),
               message: Text("New tile is added to your tile grid!"),
               dismissButton: .default(Text("OK")) {
-                  // Dismiss this View and go back
                   presentationMode.wrappedValue.dismiss()
             })
     }
     
+    // Checks if the tile is valid to save
     func inputDataValidated() -> Bool {
         if word.isEmpty {
             return false
@@ -172,71 +160,43 @@ struct AddTile: View {
         return true
     }
     
+    // Saves the tile to data
     func saveTile() {
-        /*
-         ======================================================
-         Create an instance of the Tile Entity and dress it up
-         ======================================================
-        */
-        
-        // ❎ Create a new Album entity in CoreData managedObjectContext
+
+        // new tile variable
         let newTile = Tile(context: managedObjectContext)
         
-        // ❎ Dress up the new Album entity
+        // Store each field into new tile
         newTile.word = word
         newTile.color = colorStorage[colorIndex]
         newTile.frequency = frequentWord
         
-        /*
-         ======================================================
-         Create an instance of the Photo Entity and dress it up
-         ======================================================
-        */
-        
-        // ❎ Create a new Photo entity in CoreData managedObjectContext
+        // Create new photo
         let newPhoto = Photo(context: managedObjectContext)
         
-        // ❎ Dress up the new Photo entity
         if let imageData = photoImageData {
             newPhoto.tilePhoto = imageData
         } else {
-            // Obtain the album cover default image from Assets.xcassets as UIImage
+            // tile default image
             let photoUIImage = UIImage(named: "ImageUnavailable")
-            
-            // Convert photoUIImage to data of type Data (Binary Data) in JPEG format with 100% quality
             let photoData = photoUIImage?.jpegData(compressionQuality: 1.0)
-            
-            // Assign photoData to Core Data entity attribute of type Data (Binary Data)
             newPhoto.tilePhoto = photoData!
         }
         let aAudio = Audio(context: self.managedObjectContext)
-        
-        // ❎ Dress it up by specifying its attribute
+
         do {
-            // Try to get the audio file data from audioFileUrl
+            // Audio file
             aAudio.voiceRecording = try Data(contentsOf: temporaryAudioFileUrl, options: NSData.ReadingOptions.mappedIfSafe)
             
         } catch {
             aAudio.voiceRecording = nil
         }
         
-        /*
-         ==============================
-         Establish Entity Relationships
-         ==============================
-        */
-        
-        // Establish One-to-One Relationship between Album and Photo
-        newTile.photo = newPhoto    // An album can have only one photo
-        newPhoto.tile = newTile    // A photo can belong to only one album
+        // Link tile, photo, and audio var together
+        newTile.photo = newPhoto
+        newPhoto.tile = newTile
         newTile.audio = aAudio
         aAudio.relevantTile = newTile
-        
-        /*
-         ===========================================
-         MARK: ❎ Save Changes to Core Data Database
-         ===========================================
-         */
         
         do {
             try managedObjectContext.save()
@@ -245,11 +205,7 @@ struct AddTile: View {
         }
     }
     
-    /*
-     ----------------------------------------
-     MARK: - Voice Recording Microphone Label
-     ----------------------------------------
-     */
+
     var voiceRecordingMicrophoneLabel: some View {
         VStack {
             Image(systemName: recordingVoice ? "mic.fill" : "mic.slash.fill")
@@ -262,11 +218,6 @@ struct AddTile: View {
         }
     }
     
-    /*
-     ---------------------------------------
-     MARK: Voice Recording Microphone Tapped
-     ---------------------------------------
-     */
     func voiceRecordingMicrophoneTapped() {
         if audioRecorder == nil {
             self.recordingVoice = true
@@ -277,22 +228,13 @@ struct AddTile: View {
         }
     }
     
-    /*
-     ----------------------------------
-     MARK: Finish Voice Notes Recording
-     ----------------------------------
-     */
+
     func finishRecording() {
         audioRecorder.stop()
         audioRecorder = nil
         self.recordingVoice = false
     }
     
-    /*
-     ---------------------------------
-     MARK: Start Voice Notes Recording
-     ---------------------------------
-     */
     func startRecording() {
         
         let settings = [
@@ -306,7 +248,7 @@ struct AddTile: View {
             // Delete the temporary file at
             try FileManager.default.removeItem(at: temporaryAudioFileUrl)
         } catch {
-            // Take no action
+            
         }
         
         do {

@@ -6,10 +6,12 @@
 //
  
 import SwiftUI
+
+/* Word data model for our default tiles */
  
 struct Word: Hashable, Codable, Identifiable {
    
-    var id: UUID        // Storage Type: String, Use Type (format): UUID
+    var id: UUID
     var name: String
     var imageUrl: String
     var color: String

@@ -16,6 +16,10 @@
 import Foundation
 import SwiftUI
 
+/*
+ * This is our settings page
+ */
+
 struct Settings: View {
     
     @State private var showEnteredValues = false
@@ -23,7 +27,7 @@ struct Settings: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("")) {
+                Section(header: Text("Add a tile")) {
                     NavigationLink(destination: AddTile()) {
                         HStack {
                             Image(systemName: "square.and.pencil")
@@ -45,11 +49,7 @@ struct Settings: View {
                         }
                     }
                 }
-                // Delete all tiles
-//                Section(header: Text("")) {
-//
-//                }
-            }   // End of Form {
+            }
             
             // Set font and size for the whole Form content
             .font(.system(size: 14))

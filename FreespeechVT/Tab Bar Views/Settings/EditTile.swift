@@ -10,14 +10,18 @@ import Foundation
 import SwiftUI
 import AVFoundation
 
+/* Edit tile page to edit a chosen tile within a list */
+
 struct EditTile: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(fetchRequest: Tile.allTilesFetchRequest()) var allTiles: FetchedResults<Tile>
     
+    // Tile that is passed to edit
     let currTile: Tile
     
+    // Private variables to hold our edit tile inputs
     @State private var showTileEditedAlert = false
     @State private var showInputDataMissingAlert = false
     @State private var recordingVoice = false
@@ -44,7 +48,6 @@ struct EditTile: View {
                                 self.word = currTile.word ?? ""
                             }
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-    //                        .frame(width: 500, height: 36)
                         
                         Button(action: {
                             self.word = ""
@@ -71,7 +74,7 @@ struct EditTile: View {
                             Text("Get Photo")
                                 .padding()
                         }
-                    }   // End of VStack
+                    }
                 }
                 Section(header: Text("Take Notes by Recording Your Voice")) {
                     Button(action: {
@@ -142,115 +145,70 @@ struct EditTile: View {
             .alert(isPresented: $showInputDataMissingAlert, content: { inputDataMissingAlert })
             .alert(isPresented: $showTileEditedAlert, content: { tileEditedAlert })
             .sheet(isPresented: $showImagePicker) {
-                /*
-                 🔴 We pass $showImagePicker and $photoImageData with $ sign into PhotoCaptureView
-                 so that PhotoCaptureView can change them. The @Binding keywork in PhotoCaptureView
-                 indicates that the input parameter is passed by reference and is changeable (mutable).
-                 */
                 PhotoCaptureView(showImagePicker: $showImagePicker,
                                  photoImageData: $photoImageData,
                                  cameraOrLibrary: photoTakeOrPickChoices[photoTakeOrPickIndex])
             }
     }
     
-    /*
-     --------------------------------
-     MARK: Input Data Missing Alert
-     --------------------------------
-     */
+    // Alerts when input data is missing
     var inputDataMissingAlert: Alert {
         Alert(title: Text("Missing Input Data!"),
               message: Text("Missing word input"),
               dismissButton: .default(Text("OK")) )
     }
     
-    /*
-     -----------------------
-     MARK: Tile Added Alert
-     -----------------------
-     */
+    // Alerts when tile has been edited
     var tileEditedAlert: Alert {
         Alert(title: Text("Tile Edited!"),
               message: Text("Updated tile is added to your tile grid!"),
               dismissButton: .default(Text("OK")) {
-                  // Dismiss this View and go back
                   presentationMode.wrappedValue.dismiss()
             })
     }
     
+    // Validates whether our tile has valid inputs or not
     func inputDataValidated() -> Bool {
         if word.isEmpty {
             return false
         }
-        
         return true
     }
     
+    // Saves the tile
     func saveTile() {
-        /*
-         ======================================================
-         Create an instance of the Tile Entity and dress it up
-         ======================================================
-        */
         
-        // ❎ Create a new Album entity in CoreData managedObjectContext
         let newTile = currTile
         
-        // ❎ Dress up the new Album entity
         newTile.word = word
         newTile.color = colorStorage[colorIndex]
         newTile.frequency = frequentWord
         
-        /*
-         ======================================================
-         Create an instance of the Photo Entity and dress it up
-         ======================================================
-        */
-        
-        // ❎ Create a new Photo entity in CoreData managedObjectContext
         let newPhoto = Photo(context: managedObjectContext)
         
-        // ❎ Dress up the new Photo entity
         if let imageData = photoImageData {
             newPhoto.tilePhoto = imageData
         } else {
-            // Obtain the album cover default image from Assets.xcassets as UIImage
             let photoUIImage = UIImage(named: "ImageUnavailable")
             
-            // Convert photoUIImage to data of type Data (Binary Data) in JPEG format with 100% quality
             let photoData = photoUIImage?.jpegData(compressionQuality: 1.0)
             
-            // Assign photoData to Core Data entity attribute of type Data (Binary Data)
             newPhoto.tilePhoto = photoData!
         }
         let aAudio = Audio(context: self.managedObjectContext)
         
-        // ❎ Dress it up by specifying its attribute
         do {
-            // Try to get the audio file data from audioFileUrl
             aAudio.voiceRecording = try Data(contentsOf: temporaryAudioFileUrl, options: NSData.ReadingOptions.mappedIfSafe)
             
         } catch {
             aAudio.voiceRecording = nil
         }
         
-        /*
-         ==============================
-         Establish Entity Relationships
-         ==============================
-        */
-        
-        // Establish One-to-One Relationship between Album and Photo
+        // Link tile, photo, and audio var together
         newTile.photo = newPhoto    // An album can have only one photo
         newPhoto.tile = newTile    // A photo can belong to only one album
         newTile.audio = aAudio
         aAudio.relevantTile = newTile
-        
-        /*
-         ===========================================
-         MARK: ❎ Save Changes to Core Data Database
-         ===========================================
-         */
         
         do {
             try managedObjectContext.save()
@@ -259,11 +217,7 @@ struct EditTile: View {
         }
     }
     
-    /*
-     ----------------------------------------
-     MARK: - Voice Recording Microphone Label
-     ----------------------------------------
-     */
+    // Displays the recording label in section
     var voiceRecordingMicrophoneLabel: some View {
         VStack {
             Image(systemName: recordingVoice ? "mic.fill" : "mic.slash.fill")
@@ -276,11 +230,7 @@ struct EditTile: View {
         }
     }
     
-    /*
-     ---------------------------------------
-     MARK: Voice Recording Microphone Tapped
-     ---------------------------------------
-     */
+    // Determines whether the recording label has been tapped or not
     func voiceRecordingMicrophoneTapped() {
         if audioRecorder == nil {
             self.recordingVoice = true
@@ -291,22 +241,14 @@ struct EditTile: View {
         }
     }
     
-    /*
-     ----------------------------------
-     MARK: Finish Voice Notes Recording
-     ----------------------------------
-     */
+    // Finishes our recording
     func finishRecording() {
         audioRecorder.stop()
         audioRecorder = nil
         self.recordingVoice = false
     }
     
-    /*
-     ---------------------------------
-     MARK: Start Voice Notes Recording
-     ---------------------------------
-     */
+    // Handles when recording is started
     func startRecording() {
         
         let settings = [
@@ -317,10 +259,9 @@ struct EditTile: View {
         ]
         
         do {
-            // Delete the temporary file at
             try FileManager.default.removeItem(at: temporaryAudioFileUrl)
         } catch {
-            // Take no action
+
         }
         
         do {
@@ -331,11 +272,11 @@ struct EditTile: View {
         }
     }
     
+    // Alerts when tile has been deleted
     var tileDeleted: Alert {
         Alert(title: Text("Tile Deleted!"),
               message: Text("The tile was deleted from the grid."),
               dismissButton: .default(Text("OK")) {
-                  // Dismiss this View and go back
                   presentationMode.wrappedValue.dismiss()
             })
     }

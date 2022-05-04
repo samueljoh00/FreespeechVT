@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftUI
-
+/* Our display for each tile word in the edit list */
 struct TileItem: View {
     
     let tile: Tile

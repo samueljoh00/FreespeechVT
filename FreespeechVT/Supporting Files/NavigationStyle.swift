@@ -11,16 +11,15 @@ import SwiftUI
 
 extension View {
     
+    // Custom setting for when user navigates through pages
     public func customNavigationViewStyle() -> some View {
         
         if UIDevice.current.userInterfaceIdiom == .phone {
-            // Use single column navigation view for iPhone
             return AnyView(navigationViewStyle(StackNavigationViewStyle()))
         } else {
-            // Use double column navigation view for iPad
             return AnyView(self
                 .navigationViewStyle(DoubleColumnNavigationViewStyle())
-                .padding(.leading, 1)  // Workaround to show master view until Apple fixes the bug
+                .padding(.leading, 1)
             )
         }
     }

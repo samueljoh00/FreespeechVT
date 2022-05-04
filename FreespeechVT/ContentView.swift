@@ -5,6 +5,10 @@
 //  Created by Samuel Oh on 2/15/22.
 //
 
+/*
+ * Struct shows the tab bar view that users can choose from to navigate to different pages
+ */
+
 import SwiftUI
 import CoreData
 

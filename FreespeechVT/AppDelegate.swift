@@ -6,6 +6,8 @@
 //  Copyright © 2022 FreespeechVT. All rights reserved.
 //
 
+/* This runs on first deployment of the application */
+
 import SwiftUI
 import UIKit
 

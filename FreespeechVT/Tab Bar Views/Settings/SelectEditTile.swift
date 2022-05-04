@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 
+/* Page to choose between tile grid and word dock to edit */
 
 struct SelectEditTile: View {
     

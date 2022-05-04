@@ -5,6 +5,8 @@
 //  Created by Andy Cho on 2/20/22.
 //
 
+/* Our speech grid. Populates tile page */
+
 import Foundation
 import Swift
 import SwiftUI
@@ -12,13 +14,9 @@ import AVFoundation
 
 struct SpeechGrid: View {
     
-    // ❎ CoreData managedObjectContext reference
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    // ❎ CoreData FetchRequest returning all music album entities in the database
     @FetchRequest(fetchRequest: Tile.allTilesFetchRequest()) var allTiles: FetchedResults<Tile>
-    
-    //@EnvironmentObject var userData: UserData
     
     let columns = [ GridItem(.adaptive(minimum: 100), spacing: 20) ]
     
@@ -32,6 +30,7 @@ struct SpeechGrid: View {
     // Create a speech synthesizer.
     let synthesizer = AVSpeechSynthesizer()
 
+    // Function to speak from text
     func speak(_ utterance: AVSpeechUtterance) {
         let utterance = AVSpeechUtterance(string: sentence)
             self.synthesizer.speak(utterance)
@@ -40,7 +39,9 @@ struct SpeechGrid: View {
 
     var body: some View {
         VStack {
+            // This is our sentence box structure
             HStack {
+                // Speak Button
                 Button(action: {
                     speak(utterance)
                 }) {
@@ -52,15 +53,12 @@ struct SpeechGrid: View {
                                         .foregroundColor(Color.gray))
                 }
                 .padding()
+                // Sentence Box
                 TextEditor(text: $sentence)
                     .frame(height: 70)
-    //                .overlay(
-    //                    RoundedRectangle(cornerRadius: 16)
-    //                        .stroke(Color.gray, lineWidth: 4)
-    //                )
                     .font(.custom("HelveticaNeue", size: 32))
                     .multilineTextAlignment(.center)
-//                    .border(Color.black, width: 3)
+                // Clear Button
                 Button(action: {
                     sentence = ""
                 }) {
@@ -74,12 +72,14 @@ struct SpeechGrid: View {
                 .padding()
             }
                 
+            // Tile Grid structure
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 3) {
+                    // Loop through all tiles in database and populate grid
                     ForEach(allTiles, id: \.self) { word in
                         if (!word.frequency) {
+                            // Each tiles in database is made into square button and upon click says the word
                             Button(action: {
-//                                let thisWord = word
                                 if (word.audio?.voiceRecording != nil) {
                                     sentence = sentence + " " + (word.word ?? "");
                                     // play word audios
@@ -106,19 +106,14 @@ struct SpeechGrid: View {
                                         )
                             }
                             .padding(.vertical, 25)
-//                            .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
-//                                self.isEdit = true
-//                            }))
-//                            .sheet(isPresented: self.$isEdit) {
-//                                EditTile(currTile: word)
-//                            }
+
                         }
                     }
                 }
             }
             .border(Color.black, width: 3)
-//            .tabViewStyle(.page)
             
+            // Word dock for more frequently used words
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(allTiles, id: \.self) { frequent in
@@ -149,16 +144,10 @@ struct SpeechGrid: View {
                                     .padding(.vertical, 25)
                                     .padding(.horizontal, 50)
                             }
-//                            .simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded({ _ in
-//                                self.isEdit = true
-//                            }))
-//                            .sheet(isPresented: self.$isEdit) {
-//                                EditTile(currTile: frequent)
-//                            }
                         }
                     }
-                } // end of overall hstack
-            } // end of scrollview
+                }
+            }
             .padding(.vertical, 20)
         }
     }

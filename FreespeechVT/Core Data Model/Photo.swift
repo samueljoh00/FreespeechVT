@@ -6,6 +6,10 @@
 //  Copyright © 2022 FreespeechVT. All rights reserved.
 //
 
+/*
+ * Structure of photo data
+ */
+
 import Foundation
 import CoreData
 
