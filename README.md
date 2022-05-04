@@ -1,0 +1,9 @@
+# FreespeechVT
+
+Over the course of his career, Mr. Matthew Newton, the coordinator of Assistive and Education Technology at Virginia Tech, has been working with applications and assistive technology in order to aid those who require non-verbal communication, to receive the means to do so. The FreeSpeech4VT project was launched under the direction of Mr. Matthew Newton to provide a free-of-cost tablet application that would allow users to easily communicate using type-to-speech functionality. Our goal as a team was to create an application that could provide basic and advanced implementations of features that paid-applications offer, while also promoting user customization of the application itself.
+
+The project consists of one mobile application that pulls from the device’s local data and is able to store data into the device’s memory based on user input of words/tiles. Although cross-platform applications could provide more flexibility and accessibility for users depending on what operating system their devices run on, our team found it best to implement a thorough iPadOS application due to the high frequency of iPad users for communicative purposes.
+
+This application is designed for anyone who may struggle to communicate verbally, both temporarily or more long-term. There were some design choices to be more friendly towards those who may have difficulty with motor function as well. The range of people that can use this application is immense; it can be anywhere from someone who is unable to speak at all and may have some motor function issues to someone who has laryngitis and is able to type out sentences just not speak or speak loudly for some time.
+
+Currently, this .zip file must be downloaded and opened via Xcode on MacOS. Then, it can either be run on the in-built iPad simulator (any iPad model) or can be sideloaded onto a physical iPad device (iPadOS 15.0 or newer) and run there.
